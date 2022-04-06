@@ -1,0 +1,100 @@
+// Paginator
+$paginatorBg: transparent;
+$paginatorTextColor: $textSecondaryColor;
+$paginatorBorder: solid $border;
+$paginatorBorderWidth: 0;
+$paginatorPadding: 0; // default .625rem 1rem
+$paginatorElementWidth: $buttonIconOnlyWidth;
+$paginatorElementHeight: $buttonIconOnlyWidth;
+$paginatorElementBg: transparent;
+$paginatorElementBorder: 0 none;
+$paginatorElementIconColor: $textSecondaryColor;
+$paginatorElementHoverBg: $bgHover;
+$paginatorElementHoverBorderColor: transparent;
+$paginatorElementIconHoverColor: $textSecondaryColor;
+$paginatorElementBorderRadius: $borderRadius;
+$paginatorElementMargin: .143rem; // .143rem
+$paginatorElementPadding: 0;
+
+// Table
+$tableHeaderBorder: 1px solid $border;
+$tableHeaderBorderWidth: 0 0 1px 0;
+$tableHeaderBg: transparent;
+$tableHeaderTextColor: $textColor;
+$tableHeaderFontWeight: 600;
+$tableHeaderPadding: 1rem 1rem;
+$tableHeaderCellPadding: 1rem 1rem;
+$tableHeaderCellBg: transparent;
+$tableHeaderCellTextColor: $textColor;
+$tableHeaderCellFontWeight: 600;
+$tableHeaderCellBorder: 1px solid $border;
+$tableHeaderCellBorderWidth: 0 0 1px 0;
+$tableHeaderCellHoverBg: $border;
+$tableHeaderCellTextHoverColor: $textColor;
+$tableHeaderCellIconColor: $textSecondaryColor;
+$tableHeaderCellIconHoverColor: $textSecondaryColor;
+$tableHeaderCellHighlightBg: $fadeSecondary;
+$tableHeaderCellHighlightTextColor:$primary;
+$tableHeaderCellHighlightHoverBg: $border;
+$tableHeaderCellHighlightTextHoverColor: $primary;
+$tableSortableColumnBadgeSize: 1.143rem;
+$tableBodyRowBg: $tableHeaderBg;
+$tableBodyRowTextColor: $textColor;
+$tableBodyRowEvenBg: transparent;
+$tableBodyRowHoverBg: $border;
+$tableBodyRowTextHoverColor: $textColor;
+$tableBodyCellBorder: 1px solid $border;
+$tableBodyCellBorderWidth: 0 0 1px 0;
+$tableBodyCellPadding: 1rem 1rem;
+$tableFooterCellPadding: 1rem 1rem;
+$tableFooterCellBg: $fadeSecondary;
+$tableFooterCellTextColor: $textColor;
+$tableFooterCellFontWeight: 600;
+$tableFooterCellBorder: 1px solid $border;
+$tableFooterCellBorderWidth: 0 0 1px 0;
+$tableResizerHelperBg: $primary;
+$tableFooterBorder: 1px solid $border;
+$tableFooterBorderWidth: 0 0 1px 0;
+$tableFooterBg: $fadeSecondary;
+$tableFooterTextColor: $textColor;
+$tableFooterFontWeight: 600;
+$tableFooterPadding: 1rem 1rem;
+$tableCellContentAlignment: left;
+$tableTopPaginatorBorderWidth: 1px 0 1px 0;
+$tableBottomPaginatorBorderWidth: 0 0 1px 0;
+
+$tableScaleSM: 0.5;
+$tableScaleLG: 1.25;
+
+// Data view
+$dataViewContentPadding: 0;
+$dataViewContentBorder: 0 none;
+$dataViewListItemBorder: solid $border;
+$dataViewListItemBorderWidth: 0 0 1px 0;
+
+$orderListBreakpoint: 769px;
+
+$pickListBreakpoint: 769px;
+
+$fullCalendarEventBg: $primaryHover;
+$fullCalendarEventBorderColor: $primaryHover;
+$fullCalendarEventBorder: 1px solid $primaryHover;
+$fullCalendarEventTextColor: $primaryText;
+
+$treeContainerPadding: 0.286rem;
+$treeNodePadding: 0.143rem;
+$treeNodeContentPadding: .5rem;
+$treeNodeChildrenPadding: 0 0 0 1rem;
+$treeNodeIconColor: $textSecondaryColor;
+
+$timelineVerticalEventContentPadding:0 1rem;
+$timelineHorizontalEventContentPadding:1rem 0;
+$timelineEventMarkerWidth:1rem;
+$timelineEventMarkerHeight:1rem;
+$timelineEventMarkerBorderRadius: 50%;
+$timelineEventMarkerBorder:2px solid $highlightBg;
+$timelineEventMarkerBackground:$highlightTextColor;
+$timelineEventConnectorSize:2px;
+$timelineEventColor:#dee2e6;
+
+$organizationChartConnectorColor: #dee2e6;

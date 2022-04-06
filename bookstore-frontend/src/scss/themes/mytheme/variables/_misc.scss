@@ -1,0 +1,38 @@
+/// Padding of an inplace element
+/// @group misc
+$inplacePadding: $inputPadding;
+$inplaceHoverBg: $bgHover;
+$inplaceTextHoverColor: $textColor;
+
+$badgeBg: $primary;
+$badgeTextColor: $primaryText;
+$badgeMinWidth: 1.375rem; // 1.5rem default
+$badgeHeight: 1.375rem; // 1.5rem default
+$badgeFontWeight: 500;
+$badgeFontSize: 0.75rem;
+
+$tagPadding: .25rem .5rem;
+
+$progressBarHeight: 1.5rem;
+$progressBarBorder: 0 none;
+$progressBarBg: #dee2e6;
+$progressBarValueBg: $primary;
+$progressBarValueTextColor:$primaryText;
+
+$avatarBg:#dee2e6;
+$avatarTextColor:$textColor;
+
+$chipBg:#dee2e6;
+$chipTextColor:$textColor;
+$chipBorderRadius:16px;
+
+$scrollTopBg:rgba(0,0,0,0.7);
+$scrollTopHoverBg:rgba(0,0,0,0.8);
+$scrollTopWidth:3rem;
+$scrollTopHeight:3rem;
+$scrollTopBorderRadius:50%;
+$scrollTopFontSize:1.5rem;
+$scrollTopTextColor:#f8f9fa;
+
+$skeletonBg:#e9ecef;
+$skeletonAnimationBg:rgba(255,255,255,0.4);

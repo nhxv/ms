@@ -1,0 +1,106 @@
+// Primary
+$fadePrimary: $emerald-900;
+$fadePrimaryHover: $emerald-800;
+$fadePrimaryActive: $emerald-700;
+$fadePrimaryText: $emerald-500;
+$primary: $emerald-500;
+$primaryHover: $emerald-600;
+$primaryActive: $emerald-700;
+$primaryText: $white;
+
+// Secondary
+$fadeSecondary: $neutral-700;
+$fadeSecondaryHover: $neutral-600;
+$fadeSecondaryActive: $neutral-500;
+$fadeSecondaryText: $white;
+$secondary: $neutral-100;
+$secondaryHover: $neutral-200;
+$secondaryActive: $neutral-300;
+$secondaryText: $black;
+
+// Success
+$fadeSuccess: $green-900;
+$fadeSuccessHover: $green-800;
+$fadeSuccessActive: $green-700;
+$fadeSuccessText: $green-500;
+$success: $green-500;
+$successHover: $green-600;
+$successActive: $green-700;
+$successText: $white;
+
+// Info
+$fadeInfo: $cyan-900;
+$fadeInfoHover: $cyan-800;
+$fadeInfoActive: $cyan-700;
+$fadeInfoText: $cyan-500;
+$info: $cyan-500;
+$infoHover: $cyan-600;
+$infoActive: $cyan-700;
+$infoText: $white;
+
+// Warning
+$fadeWarning: $yellow-900;
+$fadeWarningHover: $yellow-800;
+$fadeWarningActive: $yellow-700;
+$fadeWarningText: $yellow-500;
+$warning: $yellow-500;
+$warningHover: $yellow-600;
+$warningActive: $yellow-700;
+$warningText: $black;
+
+// Help
+$fadeHelp: $pink-900;
+$fadeHelpHover: $pink-800;
+$fadeHelpActive: $pink-700;
+$fadeHelpText: $pink-500;
+$help: $pink-500;
+$helpHover: $pink-600;
+$helpActive: $pink-700;
+$helpText: $white;
+
+// Danger
+$fadeDanger: $red-900;
+$fadeDangerHover: $red-800;
+$fadeDangerActive: $red-700;
+$fadeDangerText: $red-500;
+$danger: $red-500;
+$dangerHover: $red-600;
+$dangerActive: $red-700;
+$dangerText: $white;
+
+/* Global attribute */
+$bg: $neutral-900;
+$bgHover: $fadeSecondary;
+$textColor: $neutral-200;
+$textSecondaryColor: $fadeSecondaryText;
+
+// border
+$border: $neutral-500;
+
+// card & panel
+$panelBg: $neutral-800;
+
+// form
+$placeholder: $neutral-500;
+$inputBg: transparent;
+$labelBg: $panelBg;
+$switchBg: $neutral-600;
+$switchBgHover: $neutral-700;
+$popupBg: $black;
+
+// menu
+$navBg: $neutral-800;
+$navHoverBg: $neutral-700;
+$navActiveBg: $primary;
+$navActiveHoverBg: $primaryHover; // when hovering active element
+$navText: $neutral-200;
+$navTextHover: $white;
+$navTextActive: $primaryText; // on desktop
+$navTextActiveHover: $navTextActive;
+
+// tooltip
+$customToolTipBg: $neutral-700;
+
+:root {
+  color-scheme: dark;
+}

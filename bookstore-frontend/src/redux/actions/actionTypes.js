@@ -1,0 +1,11 @@
+export const ActionTypes = {
+    REGISTER: "REGISTER",
+    LOGIN: "LOGIN",
+    SIGNOUT: "SIGNOUT",
+
+    CART_ADD: "CART_ADD",
+    CART_EDIT: "CART_EDIT",
+    CART_REMOVE: "CART_REMOVE",
+    CART_MERGE: "CART_MERGE",
+    CART_RESET: "CART_RESET",
+}

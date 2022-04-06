@@ -1,0 +1,44 @@
+/// Margin of a message
+/// @group message
+$messageMargin: 1rem 0;
+$messagePadding: 1rem 1.5rem;
+$messageBorderWidth: 0 0 0 4px;
+$messageIconFontSize: 1.5rem;
+$messageTextFontSize: 1rem;
+$messageTextFontWeight: 500;
+
+$inlineMessagePadding: $inputPadding;
+$inlineMessageMargin: 0;
+$inlineMessageIconFontSize: 1rem;
+$inlineMessageTextFontSize: 1rem;
+$inlineMessageBorderWidth: 1px;
+
+$toastIconFontSize: 2rem;
+$toastMessageTextMargin: 0 0 0 1rem;
+$toastMargin: 0 0 1rem 0;
+$toastPadding: 1rem;
+$toastBorderWidth: 0 0 0 4px;
+$toastShadow: 0 3px 14px 0 rgba(0, 0, 0, 0.3);
+$toastOpacity: .9;
+$toastTitleFontWeight: 700;
+$toastDetailMargin: $inlineSpacing 0 0 0;
+
+$infoMessageBg: $fadeInfo;
+$infoMessageBorder: 0 none;
+$infoMessageTextColor: $fadeInfoText;
+$infoMessageIconColor: $fadeInfoText;
+
+$successMessageBg: $fadeSuccess;
+$successMessageBorder: 0 none;
+$successMessageTextColor: $fadeSuccessText;
+$successMessageIconColor: $fadeSuccessText;
+
+$warningMessageBg: $fadeWarning;
+$warningMessageBorder: 0 none;
+$warningMessageTextColor: $fadeWarningText;
+$warningMessageIconColor: $fadeWarningText;
+
+$errorMessageBg: $fadeDanger;
+$errorMessageBorder: 0 none;
+$errorMessageTextColor: $fadeDangerText;
+$errorMessageIconColor: $fadeDangerText;

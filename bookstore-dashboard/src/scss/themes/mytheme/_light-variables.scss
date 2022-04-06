@@ -1,0 +1,102 @@
+// Primary
+$fadePrimary: $light-blue-100;
+$fadePrimaryHover: $light-blue-200;
+$fadePrimaryActive: $light-blue-300;
+$fadePrimaryText: $light-blue-500;
+$primary: $light-blue-500;
+$primaryHover: $light-blue-600;
+$primaryActive: $light-blue-700;
+$primaryText: $white;
+
+// Secondary
+$fadeSecondary: $neutral-200; // this will be used for item hover
+$fadeSecondaryHover: $neutral-300;
+$fadeSecondaryActive: $neutral-400;
+$fadeSecondaryText: $neutral-900;
+$secondary: $neutral-900;
+$secondaryHover: $neutral-700;
+$secondaryActive: $neutral-800;
+$secondaryText: $white;
+
+// Success
+$fadeSuccess: $green-100;
+$fadeSuccessHover: $green-200;
+$fadeSuccessActive: $green-300;
+$fadeSuccessText: $green-500;
+$success: $green-500;
+$successHover: $green-600;
+$successActive: $green-700;
+$successText: $white;
+
+// Info
+$fadeInfo: $cyan-100;
+$fadeInfoHover: $cyan-200;
+$fadeInfoActive: $cyan-300;
+$fadeInfoText: $cyan-500;
+$info: $cyan-500;
+$infoHover: $cyan-600;
+$infoActive: $cyan-700;
+$infoText: $white;
+
+// Warning
+$fadeWarning: $yellow-100;
+$fadeWarningHover: $yellow-200;
+$fadeWarningActive: $yellow-300;
+$fadeWarningText: $yellow-500;
+$warning: $yellow-500;
+$warningHover: $yellow-600;
+$warningActive: $yellow-700;
+$warningText: $black;
+
+// Help
+$fadeHelp: $pink-100;
+$fadeHelpHover: $pink-200;
+$fadeHelpActive: $pink-300;
+$fadeHelpText: $pink-500;
+$help: $pink-500;
+$helpHover: $pink-600;
+$helpActive: $pink-700;
+$helpText: $white;
+
+// Danger
+$fadeDanger: $red-100;
+$fadeDangerHover: $red-200;
+$fadeDangerActive: $red-300;
+$fadeDangerText: $red-500;
+$danger: $red-500;
+$dangerHover: $red-600;
+$dangerActive: $red-700;
+$dangerText: $white;
+
+/* Global attribute */
+$bg: $neutral-100;
+$bgHover: $fadeSecondary;
+$textColor: $black;
+$textSecondaryColor: $fadeSecondaryText;
+
+// border
+$border: $neutral-400;
+
+// card & panel
+$panelBg: $white;
+
+// form
+$placeholder: $neutral-400;
+$inputBg: transparent;
+$labelBg: $panelBg;
+$switchBg: $neutral-300;
+$switchBgHover: $neutral-400;
+$popupBg: $bg;
+
+// menu
+$navBg: $neutral-100;
+$navHoverBg: $neutral-200;
+$navActiveBg: $primary;
+$navActiveHoverBg: $primaryHover; // when hovering active element
+$navText: $neutral-900;
+$navTextHover: $navText;
+$navTextActive: $primaryText; // on desktop
+$navTextActiveHover: $navTextActive;
+
+// tooltip
+$customToolTipBg: $neutral-700;

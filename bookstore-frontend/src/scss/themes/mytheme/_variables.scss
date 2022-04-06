@@ -1,0 +1,17 @@
+/* Color palette */
+@import 'colors/_tailwind.scss';
+
+/* Light or Dark theme implementation */
+@import '_light-variables.scss';
+
+/* Mandatory Designer Variables */
+@import './variables/_general';
+@import './variables/_form';
+@import './variables/_button';
+@import './variables/_panel';
+@import './variables/_data';
+@import './variables/_overlay';
+@import './variables/_message';
+@import './variables/_menu';
+@import './variables/_media';
+@import './variables/_misc';

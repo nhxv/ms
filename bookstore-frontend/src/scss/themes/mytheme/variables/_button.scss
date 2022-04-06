@@ -1,0 +1,207 @@
+$buttonFontWeight: 500;
+$buttonPadding: .625rem 1rem;
+$buttonIconOnlyWidth: 2.5rem;
+$buttonIconOnlyPadding: .5rem 0;
+$roundedButtonBorderRadius: 2rem;
+
+$textButtonHoverBgOpacity:.04;
+$textButtonActiveBgOpacity:.16;
+$outlinedButtonBorder: 2px solid;
+$buttonBorder: $outlinedButtonBorder $primary;
+$raisedButtonShadow: $boxShadow;
+
+$buttonBg: $primary;
+$buttonTextColor: $primaryText;
+$buttonHoverBg: $primaryHover;
+$buttonTextHoverColor: $primaryText;
+$buttonHoverBorderColor: $primaryHover;
+$buttonActiveBg: $primaryActive;
+$buttonTextActiveColor: $primaryText;
+$buttonActiveBorderColor: $primaryActive;
+
+$secondaryButtonBg: $secondary;
+$secondaryButtonTextColor: $secondaryText;
+$secondaryButtonBorder: $outlinedButtonBorder $secondary;
+$secondaryButtonHoverBg: $secondaryHover;
+$secondaryButtonTextHoverColor: $secondaryText;
+$secondaryButtonHoverBorderColor: $secondaryHover;
+$secondaryButtonActiveBg: $secondaryActive;
+$secondaryButtonTextActiveColor: $secondaryText;
+$secondaryButtonActiveBorderColor: $secondaryActive;
+$secondaryButtonFocusShadow: 0 0 0 0.3rem $fadeSecondary;
+
+$infoButtonBg: $info;
+$infoButtonTextColor: $infoText;
+$infoButtonBorder: $outlinedButtonBorder $info;
+$infoButtonHoverBg: $infoHover;
+$infoButtonTextHoverColor: $infoText;
+$infoButtonHoverBorderColor: $infoHover;
+$infoButtonActiveBg: $infoActive;
+$infoButtonTextActiveColor: $infoText;
+$infoButtonActiveBorderColor: $infoActive;
+$infoButtonFocusShadow: 0 0 0 0.3rem $fadeInfo;
+
+$successButtonBg: $success;
+$successButtonTextColor: $successText;
+$successButtonBorder: $outlinedButtonBorder $success;
+$successButtonHoverBg: $successHover;
+$successButtonTextHoverColor: $successText;
+$successButtonHoverBorderColor: $successHover;
+$successButtonActiveBg: $successActive;
+$successButtonTextActiveColor: $successText;
+$successButtonActiveBorderColor: $successActive;
+$successButtonFocusShadow: 0 0 0 0.3rem $fadeSuccess;
+
+$warningButtonBg: $warning;
+$warningButtonTextColor: $warningText;
+$warningButtonBorder: $outlinedButtonBorder $warning;
+$warningButtonHoverBg: $warningHover;
+$warningButtonTextHoverColor: $warningText;
+$warningButtonHoverBorderColor: $warningHover;
+$warningButtonActiveBg: $warningActive;
+$warningButtonTextActiveColor: $warningText;
+$warningButtonActiveBorderColor: $warningActive;
+$warningButtonFocusShadow: 0 0 0 0.3rem $fadeWarning;
+
+$helpButtonBg: $help;
+$helpButtonTextColor: $helpText;
+$helpButtonBorder:$outlinedButtonBorder $help;
+$helpButtonHoverBg: $helpHover;
+$helpButtonTextHoverColor: $helpText;
+$helpButtonHoverBorderColor: $helpHover;
+$helpButtonActiveBg: $helpActive;
+$helpButtonTextActiveColor: $helpText;
+$helpButtonActiveBorderColor:$helpActive;
+$helpButtonFocusShadow:0 0 0 0.3rem $fadeHelp;
+
+$dangerButtonBg: $danger;
+$dangerButtonTextColor: $dangerText;
+$dangerButtonBorder: $outlinedButtonBorder $danger;
+$dangerButtonHoverBg: $dangerHover;
+$dangerButtonTextHoverColor: $dangerText;
+$dangerButtonHoverBorderColor: $dangerHover;
+$dangerButtonActiveBg: $dangerActive;
+$dangerButtonTextActiveColor: $dangerText;
+$dangerButtonActiveBorderColor: $dangerActive;
+$dangerButtonFocusShadow: 0 0 0 0.3rem $fadeDanger;
+
+$linkButtonColor:$primary;
+$linkButtonHoverColor:$primary;
+$linkButtonTextHoverDecoration:underline;
+$linkButtonFocusShadow: 0 0 0 0.3rem $focusOutlineColor;
+
+/* Fade buttons */
+/// Background of button
+$fadePrimaryButtonBg: $fadePrimary;
+$fadeSecondaryButtonBg: $fadeSecondary;
+$fadeInfoButtonBg: $fadeInfo;
+$fadeSuccessButtonBg: $fadeSuccess;
+$fadeWarningButtonBg: $fadeWarning;
+$fadeHelpButtonBg: $fadeHelp;
+$fadeDangerButtonBg: $fadeDanger;
+
+/// Text color of button
+$fadePrimaryButtonText: $fadePrimaryText;
+$fadeSecondaryButtonText: $fadeSecondaryText;
+$fadeInfoButtonText: $fadeInfoText;
+$fadeSuccessButtonText: $fadeSuccessText;
+$fadeWarningButtonText: $fadeWarningText;
+$fadeHelpButtonText: $fadeHelpText;
+$fadeDangerButtonText: $fadeDangerText;
+
+/// Border of button
+$fadePrimaryButtonBorder: $outlinedButtonBorder $fadePrimaryButtonBg;
+$fadeSecondaryButtonBorder: $outlinedButtonBorder $fadeSecondaryButtonBg;
+$fadeInfoButtonBorder: $outlinedButtonBorder $fadeInfoButtonBg;
+$fadeSuccessButtonBorder: $outlinedButtonBorder $fadeSuccessButtonBg;
+$fadeWarningButtonBorder: $outlinedButtonBorder $fadeWarningButtonBg;
+$fadeHelpButtonBorder: $outlinedButtonBorder $fadeHelpButtonBg;
+$fadeDangerButtonBorder: $outlinedButtonBorder $fadeDangerButtonBg;
+
+/// Background of button in hover state
+$fadePrimaryButtonHoverBg: $fadePrimaryHover;
+$fadeSecondaryButtonHoverBg: $fadeSecondaryHover;
+$fadeInfoButtonHoverBg: $fadeInfoHover;
+$fadeSuccessButtonHoverBg: $fadeSuccessHover;
+$fadeWarningButtonHoverBg: $fadeWarningHover;
+$fadeHelpButtonHoverBg: $fadeHelpHover;
+$fadeDangerButtonHoverBg: $fadeDangerHover;
+
+/// Text color of button in hover state
+$fadePrimaryButtonTextHover: $fadePrimaryText;
+$fadeSecondaryButtonTextHover: $fadeSecondaryText;
+$fadeInfoButtonTextHover: $fadeInfoText;
+$fadeSuccessButtonTextHover: $fadeSuccessText;
+$fadeWarningButtonTextHover: $fadeWarningText;
+$fadeHelpButtonTextHover: $fadeHelpText;
+$fadeDangerButtonTextHover: $fadeDangerText;
+
+/// Border color of button in hover state
+$fadePrimaryButtonHoverBorder: $fadePrimaryHover;
+$fadeSecondaryButtonHoverBorder: $fadeSecondaryHover;
+$fadeInfoButtonHoverBorder: $fadeInfoHover;
+$fadeSuccessButtonHoverBorder: $fadeSuccessHover;
+$fadeWarningButtonHoverBorder: $fadeWarningHover;
+$fadeHelpButtonHoverBorder: $fadeHelpHover;
+$fadeDangerButtonHoverBorder: $fadeDangerHover;
+
+/// Background of button in pressed state
+$fadePrimaryButtonActiveBg: $fadePrimaryActive;
+$fadeSecondaryButtonActiveBg: $fadeSecondaryActive;
+$fadeInfoButtonActiveBg: $fadeInfoActive;
+$fadeSuccessButtonActiveBg: $fadeSuccessActive;
+$fadeWarningButtonActiveBg: $fadeWarningActive;
+$fadeHelpButtonActiveBg: $fadeHelpActive;
+$fadeDangerButtonActiveBg: $fadeDangerActive;
+
+/// Text color of button in pressed state
+$fadePrimaryButtonTextActive: $fadePrimaryText;
+$fadeSecondaryButtonTextActive: $fadeSecondaryText;
+$fadeInfoButtonTextActive: $fadeInfoText;
+$fadeSuccessButtonTextActive: $fadeSuccessText;
+$fadeWarningButtonTextActive: $fadeWarningText;
+$fadeHelpButtonTextActive: $fadeHelpText;
+$fadeDangerButtonTextActive: $fadeDangerText;
+
+/// Border color of button in pressed state
+$fadePrimaryButtonActiveBorder: $fadePrimaryActive;
+$fadeSecondaryButtonActiveBorder: $fadeSecondaryActive;
+$fadeInfoButtonActiveBorder: $fadeInfoActive;
+$fadeSuccessButtonActiveBorder: $fadeSuccessActive;
+$fadeWarningButtonActiveBorder: $fadeWarningActive;
+$fadeHelpButtonActiveBorder: $fadeHelpActive;
+$fadeDangerButtonActiveBorder: $fadeDangerActive;
+
+/// Background of a toggle button
+/// @group button
+$toggleButtonBg: $white;
+$toggleButtonBorder: $outlinedButtonBorder $border;
+$toggleButtonTextColor: $textColor;
+$toggleButtonIconColor: $textSecondaryColor;
+$toggleButtonHoverBg: $secondaryHover;
+$toggleButtonHoverBorderColor: $border;
+$toggleButtonTextHoverColor: $textColor;
+$toggleButtonIconHoverColor: $textSecondaryColor;
+$toggleButtonActiveBg: $primary;
+$toggleButtonActiveBorderColor: $primary;
+$toggleButtonTextActiveColor: $primaryText;
+$toggleButtonIconActiveColor: $primaryText;
+$toggleButtonActiveHoverBg: $primaryHover;
+$toggleButtonActiveHoverBorderColor: $primaryHover;
+$toggleButtonTextActiveHoverColor: $primaryText;
+$toggleButtonIconActiveHoverColor: $primaryText;
+
+$speedDialButtonWidth: 4rem;
+$speedDialButtonHeight: 4rem;
+$speedDialButtonIconFontSize: 1.3rem;
+$speedDialActionWidth: 3rem;
+$speedDialActionHeight: 3rem;
+$speedDialActionBg: #495057;
+$speedDialActionHoverBg: #343a40;
+$speedDialActionTextColor: #fff;
+$speedDialActionTextHoverColor: #fff;
+
+// unused maybe
+$plainButtonTextColor:#6c757d;
+$plainButtonHoverBgColor:#e9ecef;
+$plainButtonActiveBgColor:#dee2e6;

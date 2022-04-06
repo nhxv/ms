@@ -1,0 +1,88 @@
+$panelHeaderBorderColor: $border;
+$panelHeaderBorder: 1px solid $border;
+$panelHeaderBg: #f8f9fa;
+$panelHeaderTextColor: $textColor;
+$panelHeaderFontWeight: 600;
+$panelHeaderPadding: 1rem;
+$panelToggleableHeaderPadding: .5rem 1rem;
+$panelHeaderHoverBg: $bgHover;
+$panelHeaderHoverBorderColor: $border;
+$panelHeaderTextHoverColor: #495057;
+$panelContentBorderColor: #dee2;
+$panelContentBorder: 1px solid $border;
+$panelContentBg: $panelBg;
+$panelContentTextColor: $textColor;
+$panelContentPadding: 1rem;
+$panelFooterBorder: 1px solid $border;
+$panelFooterBg: #ffffff;
+$panelFooterTextColor: $textColor;
+$panelFooterPadding: 0.5rem 1rem;
+
+$cardBodyPadding: 0rem; // default 1rem
+$cardContentPadding: 0; // default 1rem 0
+$cardTitleFontSize: 1.5rem;
+$cardTitleFontWeight: 700;
+$cardSubTitleFontWeight: 700;
+$cardSubTitleColor: $textSecondaryColor;
+$cardFooterPadding: 1rem 0 0 0;
+$cardShadow: $boxShadow;
+
+$accordionSpacing: 0;
+$accordionHeaderBorder: $panelHeaderBorder;
+$accordionHeaderBg: $panelHeaderBg;
+$accordionHeaderTextColor: $panelHeaderTextColor;
+$accordionHeaderFontWeight: $panelHeaderFontWeight;
+$accordionHeaderPadding: $panelHeaderPadding;
+$accordionHeaderHoverBg: $bgHover;
+$accordionHeaderHoverBorderColor: $panelHeaderBorder;
+$accordionHeaderTextHoverColor: $textColor;
+$accordionHeaderActiveBg: $panelHeaderBg;
+$accordionHeaderActiveBorderColor: $border;
+$accordionHeaderTextActiveColor: $textColor;
+$accordionHeaderActiveHoverBg: $bgHover;
+$accordionHeaderActiveHoverBorderColor: $border;
+$accordionHeaderTextActiveHoverColor: $textColor;
+$accordionContentBorder: $panelContentBorder;
+$accordionContentBg: $panelContentBg;
+$accordionContentTextColor: $panelContentTextColor;
+$accordionContentPadding: $panelContentPadding;
+
+$tabviewNavBorder: 1px solid $border;
+$tabviewNavBorderWidth: 0 0 2px 0;
+$tabviewNavBg: #ffffff;
+$tabviewHeaderSpacing: 0;
+$tabviewHeaderBorder: solid $border;
+$tabviewHeaderBorderWidth: 0 0 2px 0;
+$tabviewHeaderBorderColor: transparent transparent $border transparent;
+$tabviewHeaderBg: #ffffff;
+$tabviewHeaderTextColor: $textSecondaryColor;
+$tabviewHeaderFontWeight: $panelHeaderFontWeight;
+$tabviewHeaderPadding: $panelHeaderPadding;
+$tabviewHeaderMargin: 0 0 -2px 0;
+$tabviewHeaderHoverBg: #ffffff;
+$tabviewHeaderHoverBorderColor: #9ba2aa;
+$tabviewHeaderTextHoverColor: $textSecondaryColor;
+$tabviewHeaderActiveBg: #ffffff;
+$tabviewHeaderActiveBorderColor: $primary;
+$tabviewHeaderTextActiveColor: $primary;
+$tabviewContentBorder: 0 none;
+$tabviewContentBg: $panelContentBg;
+$tabviewContentTextColor: $panelContentTextColor;
+$tabviewContentPadding: $panelContentPadding;
+
+$panelHeaderHoverBg: $bgHover;
+$panelHeaderHoverBorderColor: $border;
+$panelHeaderTextHoverColor: $textColor;
+
+$scrollPanelTrackBorder: 0 none;
+$scrollPanelTrackBg: #f8f9fa;
+
+$dividerHorizontalMargin:1rem 0;
+$dividerHorizontalPadding:0 1rem;
+$dividerVerticalMargin:0 1rem;
+$dividerVerticalPadding:1rem 0;
+$dividerSize:1px;
+$dividerColor:$border;
+
+$splitterGutterBg:#f8f9fa;
+$splitterGutterHandleBg:$border;

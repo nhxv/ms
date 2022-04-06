@@ -1,0 +1,17 @@
+$overlayContentBorder: 0 none;
+$overlayContentBg: $panelContentBg;
+$overlayContainerShadow: $boxShadow;
+
+$dialogHeaderBg: $overlayContentBg;
+$dialogHeaderBorder: none;
+$dialogHeaderTextColor: $panelHeaderTextColor;
+$dialogHeaderFontWeight: 500;
+$dialogHeaderFontSize: 1.25rem;
+$dialogHeaderPadding: 1.5rem;
+$dialogContentPadding: 0 1.5rem;
+$dialogFooterBorder: none;
+$dialogFooterPadding: 1.5rem;
+
+$tooltipBg: $textColor;
+$tooltipTextColor: #ffffff;
+$tooltipPadding: $inputPadding;

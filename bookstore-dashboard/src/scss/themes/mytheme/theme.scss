@@ -1,0 +1,23 @@
+@import './variables';
+@import './_fonts';
+@import '../../designer/_components';
+
+/* Bootstrap 4.6 */
+@import '~bootstrap/scss/functions';
+@import 'bootstrap/_variables.scss'; // customize bootstrap var here
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
+@import "~bootstrap/scss/root";
+
+@import "~bootstrap/scss/utilities";
+@import "~bootstrap/scss/reboot";
+@import "~bootstrap/scss/type";
+@import "~bootstrap/scss/images";
+@import "~bootstrap/scss/grid";
+
+@import "~bootstrap/scss/nav";
+@import "~bootstrap/scss/navbar";
+@import "~bootstrap/scss/transitions";
+
+/* */
+@import 'extensions/extensions';

@@ -1,0 +1,50 @@
+$borderRadius: .375rem;
+$boxShadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+
+/* Typography */
+$fontFamily: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+$fontSize: 1rem;
+$primeIconFontSize: 1rem;
+$loadingIconFontSize: 2rem;
+$fontWeight: normal;
+
+// highlight dropdown selected item
+$highlightBg: $primary;
+$highlightTextColor: $primaryText;
+$errorColor: $danger;
+
+$focusOutlineColor: $fadePrimary;
+$focusShadow: 0 0 0 0.2rem $focusOutlineColor;
+$focusOutline: 0 none;
+$focusOutlineOffset: 0;
+$disabledOpacity: .4; // disabled state for text, button
+
+$transitionDuration: .2s;
+$formElementTransition: background-color $transitionDuration, color $transitionDuration, border-color $transitionDuration, box-shadow $transitionDuration;
+$actionIconTransition: background-color $transitionDuration, color $transitionDuration, box-shadow $transitionDuration;
+$listItemTransition: background-color $transitionDuration, border-color $transitionDuration, box-shadow $transitionDuration;
+
+$divider: 1px solid $fadeSecondary;
+$inlineSpacing: .5rem;
+
+/// Background of the modal layer
+$maskBg: rgba(0, 0, 0, 0.4);
+
+// icon in calendar, pagination
+$actionIconWidth: 2rem;
+$actionIconHeight: 2rem;
+$actionIconBg: transparent;
+$actionIconBorder: 0 none;
+$actionIconColor: $textSecondaryColor;
+$actionIconHoverBg: $bgHover;
+$actionIconHoverBorderColor: transparent;
+$actionIconHoverColor: $textColor;
+$actionIconBorderRadius: 50%;
+
+/// Scale factor of small component size
+/// @group general
+$scaleSM: 0.875; // 0.875
+
+/// Scale factor of small large size
+/// @group general
+$scaleLG: 1.25;

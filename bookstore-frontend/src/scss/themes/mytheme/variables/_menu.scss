@@ -1,0 +1,78 @@
+/// Background of a steps item
+/// @group menu
+$stepsItemBg: #ffffff;
+$stepsItemBorder: 1px solid #c8c8c8;
+$stepsItemTextColor: $textSecondaryColor;
+$stepsItemNumberWidth: 2rem;
+$stepsItemNumberHeight: 2rem;
+$stepsItemNumberFontSize: 1.143rem;
+$stepsItemNumberColor: $textColor;
+$stepsItemNumberBorderRadius: 50%;
+$stepsItemActiveFontWeight: 600;
+
+$menuWidth: 12.5rem;
+$menuBg: #ffffff;
+$menuBorder: 1px solid $border;
+$menuTextColor: $textColor;
+$menuitemPadding: .75rem 1rem;
+$menuitemBorderRadius: 0;
+$menuitemTextColor: $textColor;
+$menuitemIconColor: $textSecondaryColor;
+$menuitemTextHoverColor: $textColor;
+$menuitemIconHoverColor: $textSecondaryColor;
+$menuitemHoverBg: $bgHover;
+$menuitemTextActiveColor: $textColor;
+$menuitemIconActiveColor: $textSecondaryColor;
+$menuitemActiveBg: #e9ecef;
+$menuitemSubmenuIconFontSize: .875rem;
+
+$submenuHeaderMargin: 0;
+$submenuHeaderPadding: .75rem 1rem;
+$submenuHeaderBg: #ffffff;
+$submenuHeaderTextColor: $textColor;
+$submenuHeaderBorderRadius: 0;
+$submenuHeaderFontWeight: 600;
+
+$overlayMenuBg:$menuBg;
+$overlayMenuBorder: 0 none;
+$overlayMenuShadow: 0 1px 6px 0 rgba(0, 0, 0, 0.1);
+
+$verticalMenuPadding: .25rem 0;
+$verticalMenuitemMargin:0;
+
+$menuSeparatorMargin: .25rem 0;
+
+$breadcrumbPadding: 1rem;
+$breadcrumbBg: $menuBg;
+$breadcrumbBorder: $menuBorder;
+$breadcrumbItemTextColor: $menuitemTextColor;
+$breadcrumbItemIconColor: $menuitemIconColor;
+$breadcrumbLastItemTextColor: $menuitemTextColor;
+$breadcrumbLastItemIconColor: $menuitemIconColor;
+$breadcrumbSeparatorColor: $menuitemTextColor;
+
+$horizontalMenuPadding: .5rem;
+$horizontalMenuBg: #f8f9fa;
+$horizontalMenuBorder: $menuBorder;
+$horizontalMenuTextColor: $menuTextColor;
+$horizontalMenuRootMenuitemPadding: $menuitemPadding;
+$horizontalMenuRootMenuitemBorderRadius: $borderRadius;
+$horizontalMenuRootMenuitemTextColor: $menuitemTextColor;
+$horizontalMenuRootMenuitemIconColor: $menuitemIconColor;
+$horizontalMenuRootMenuitemTextHoverColor: $menuitemTextHoverColor;
+$horizontalMenuRootMenuitemIconHoverColor: $menuitemIconHoverColor;
+$horizontalMenuRootMenuitemHoverBg: $menuitemHoverBg;
+$horizontalMenuRootMenuitemTextActiveColor:$menuitemTextActiveColor;
+$horizontalMenuRootMenuitemIconActiveColor: $menuitemIconActiveColor;
+$horizontalMenuRootMenuitemActiveBg: $menuitemActiveBg;
+
+$dockActionWidth: 4rem;
+$dockActionHeight: 4rem;
+$dockItemPadding: .5rem;
+$dockCurrentItemMargin: 1.5rem;
+$dockFirstItemsMargin: 1.3rem;
+$dockSecondItemsMargin: 0.9rem;
+$dockBg: rgba(255,255,255,.1);
+$dockBorder: 1px solid rgba(255,255,255,0.2);
+$dockPadding: .5rem .5rem;
+$dockBorderRadius: .5rem;

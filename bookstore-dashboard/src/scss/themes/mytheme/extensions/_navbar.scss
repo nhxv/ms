@@ -1,0 +1,60 @@
+.navbar {
+  color: $navText;
+  background: $navBg;
+}
+
+.navbar-brand {
+  color: $primary;
+  font-weight: 700;
+}
+
+.nav-item {
+  cursor: pointer;
+  padding: 0 .125rem;
+}
+
+.nav-link {
+  text-decoration: none !important;
+  padding: 0.5rem 0 !important;
+  border-radius: $borderRadius !important;
+}
+
+.nav-link:hover {
+  color: $primary;
+}
+
+.nav-active {
+  color: $primary;
+}
+
+.navbar-toggler {
+  outline: none;
+  color: $navText;
+}
+
+.navbar-toggler:hover {
+  background: $navHoverBg;
+}
+
+@media (min-width: 992px) { // lg
+  .nav-link {
+    padding: 0.625rem 1rem !important;
+  }
+
+  .nav-link:hover {
+    background: $navHoverBg;
+    color: $navTextHover;
+  }
+
+  .nav-active {
+    background: $navActiveBg;
+    color: $navTextActive;
+  }
+
+  .nav-active:hover {
+    background: $navActiveHoverBg;
+    color: $navTextActiveHover;
+  }
+}
+
+

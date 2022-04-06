@@ -1,0 +1,159 @@
+/// Padding of an input field, must be defined with a shorthand for vertical and horizontal values e.g. ".5rem .5rem"
+/// @group form
+$inputPadding: .625rem .75rem;
+$inputTextFontSize: 1rem;
+$inputTextColor: $textColor;
+$inputIconColor: $textColor;
+$inputBorder: 1px solid $border;
+$inputHoverBorderColor: $primary;
+$inputFocusBorderColor: $primary;
+$inputErrorBorderColor: $errorColor;
+$inputPlaceholderTextColor: $placeholder;
+
+// TODO: input filled
+$inputFilledBg:#f8f9fa;
+$inputFilledHoverBg:#f8f9fa;
+$inputFilledFocusBg:#f8f9fa;
+
+$inputGroupBg: $bgHover;
+$inputGroupTextColor: $textSecondaryColor;
+$inputGroupAddOnMinWidth: 2.357rem;
+
+// dropdown item list
+$inputListBg: $popupBg;
+$inputListTextColor: $textColor;
+$inputListBorder: $inputBorder;
+$inputListPadding: .25rem 0; // default 0.5 0
+$inputListItemPadding: .5rem 1rem; // default 0.5 1
+$inputListItemBg: transparent;
+$inputListItemTextColor: $textColor;
+$inputListItemHoverBg: $bgHover;
+$inputListItemTextHoverColor: $textColor;
+$inputListItemBorder: 0 none;
+$inputListItemBorderRadius: $borderRadius; // default 0
+$inputListItemMargin: .25rem; // default 0
+$inputListItemFocusShadow: inset 0 0 0 0.15rem $focusOutlineColor;
+$inputListHeaderPadding: .5rem 1rem;
+$inputListHeaderMargin: 0;
+$inputListHeaderBg: $inputListBg;
+$inputListHeaderTextColor: $textColor;
+$inputListHeaderBorder: 0 none;
+
+/// Background for an overlay of an input such as autocomplete or dropdown
+/// @group form
+$inputOverlayBg:$inputListBg;
+$inputOverlayHeaderBg:$inputListHeaderBg;
+$inputOverlayBorder: 0 none;
+$inputOverlayShadow: 0 3px 6px 0 rgba(0, 0, 0, 0.1);
+
+$checkboxWidth: 20px;
+$checkboxHeight: 20px;
+$checkboxBorder: 2px solid $border;
+$checkboxIconFontSize: 10px;
+$checkboxActiveBorderColor: $primary;
+$checkboxActiveBg: $primary;
+$checkboxIconActiveColor: $primaryText;
+$checkboxActiveHoverBg: $primaryActive;
+$checkboxIconActiveHoverColor: $primaryText;
+$checkboxActiveHoverBorderColor: $primaryActive;
+
+// radio button
+$radiobuttonWidth: 20px;
+$radiobuttonHeight: 20px;
+$radiobuttonBorder: 2px solid $border;
+$radiobuttonIconSize: 10px;
+$radiobuttonActiveBorderColor: $primary;
+$radiobuttonActiveBg: $primary;
+$radiobuttonIconActiveColor: $primaryText;
+$radiobuttonActiveHoverBg: $primaryActive;
+$radiobuttonIconActiveHoverColor: $primaryText;
+$radiobuttonActiveHoverBorderColor: $primaryActive;
+
+$colorPickerPreviewWidth: 2rem;
+$colorPickerPreviewHeight: 2rem;
+$colorPickerBg: $primary;
+$colorPickerBorder:1px solid $border;
+$colorPickerHandleColor: #ffffff;
+
+$ratingIconFontSize: 1.143rem;
+$ratingCancelIconColor: $danger;
+$ratingCancelIconHoverColor: $dangerHover;
+$ratingStarIconOffColor: $textColor;
+$ratingStarIconOnColor: $primary;
+$ratingStarIconHoverColor: $primary;
+
+$sliderBg: $border;
+$sliderBorder: 0 none;
+$sliderHorizontalHeight: .286rem;
+$sliderVerticalWidth: 0.286rem;
+$sliderHandleWidth: 1.143rem;
+$sliderHandleHeight: 1.143rem;
+$sliderHandleBg: #ffffff;
+$sliderHandleBorder: 2px solid $primary;
+$sliderHandleBorderRadius: 50%;
+$sliderHandleHoverBorderColor: $primary;
+$sliderHandleHoverBg: $primary;
+$sliderRangeBg: $primary;
+
+$calendarTableMargin: .5rem; // year month margin, default .5rem 0
+$calendarPadding: .5rem;
+$calendarBg: $popupBg;
+$calendarInlineBg: $popupBg;
+$calendarTextColor: $textColor;
+$calendarBorder: $inputListBorder;
+$calendarOverlayBorder: $inputOverlayBorder;
+$calendarHeaderPadding: .5rem;
+$calendarHeaderBg: $calendarBg;
+$calendarInlineHeaderBg: $calendarBg;
+$calendarHeaderBorder: 1px solid $border;
+$calendarHeaderTextColor: $textColor;
+$calendarHeaderFontWeight: 600;
+$calendarHeaderCellPadding: .5rem;
+$calendarMonthYearHeaderHoverTextColor: $primary !default;
+$calendarMonthYearHoverText: $primary;
+$calendarCellDatePadding: .5rem;
+$calendarCellDateWidth: 2.5rem;
+$calendarCellDateHeight: 2.5rem;
+$calendarCellDateBorderRadius: 50%;
+$calendarCellDateBorder:1px solid transparent;
+$calendarCellDateHoverBg: $bgHover;
+$calendarCellDateTodayBg: $fadePrimary;
+$calendarCellDateTodayBorderColor: transparent;
+$calendarCellDateTodayTextColor: $fadePrimaryText;
+$calendarButtonBarPadding: 1rem 0;
+$calendarTimePickerPadding: .5rem;
+$calendarTimePickerElementPadding: 0 .429rem;
+$calendarTimePickerTimeFontSize: 1.286rem;
+$calendarBreakpoint: 769px;
+$calendarCellDatePaddingSM: 0;
+
+$inputSwitchWidth: 3rem;
+$inputSwitchHeight: 1.75rem;
+$inputSwitchBorderRadius: 30px;
+$inputSwitchHandleWidth: 1.250rem;
+$inputSwitchHandleHeight: 1.250rem;
+$inputSwitchHandleBorderRadius: 50%;
+$inputSwitchSliderPadding: .25rem;
+$inputSwitchSliderOffBg: $switchBg;
+$inputSwitchHandleOffBg: #ffffff;
+$inputSwitchSliderOffHoverBg: $switchBgHover;
+$inputSwitchSliderOnBg: $primary;
+$inputSwitchSliderOnHoverBg: $primaryHover;
+$inputSwitchHandleOnBg: #ffffff;
+
+$fileUploadProgressBarHeight: .25rem;
+$fileUploadContentPadding: 2rem 1rem;
+
+$editorToolbarBg:#f8f9fa;
+$editorToolbarBorder:1px solid $border;
+$editorToolbarPadding:1rem;
+$editorToolbarIconColor:#6c757d;
+$editorToolbarIconHoverColor:#495057;
+$editorIconActiveColor:$primary;
+$editorContentBorder: 1px solid $border;
+$editorContentBg:#ffffff;
+
+$passwordMeterBg: $border;
+$passwordWeakBg: $danger;
+$passwordMediumBg: $warning;
+$passwordStrongBg: $success;
