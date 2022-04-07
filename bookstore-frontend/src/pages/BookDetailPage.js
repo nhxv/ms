@@ -37,7 +37,7 @@ function BookDetailPage() {
           unitPrice: bookData.unitPrice,
           genres: bookData.genres,
         });
-      }).catch(e => {
+      }).catch(err => {
         navigate(`/not-found`);
       });
     }
@@ -95,7 +95,7 @@ function BookDetailPage() {
   } else {
     return (
       <>
-        <Toast ref={addedToast} position="top-center" />
+        <Toast ref={addedToast} position="bottom-center" />
         <div className="row mt-4">
           <div className="col-lg-4 col-sm-6">
             {/* original size: 225 x 350 -> 9 x 14 */}

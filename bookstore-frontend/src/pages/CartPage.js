@@ -1,8 +1,8 @@
 import { useSelector } from "react-redux";
-import { Card } from 'primereact/card';
-import { Button } from 'primereact/button';
-import { Dropdown } from 'primereact/dropdown';
-import { Message } from 'primereact/message';
+import { Card } from "primereact/card";
+import { Button } from "primereact/button";
+import { Dropdown } from "primereact/dropdown";
+import { Message } from "primereact/message";
 import { useDispatch } from "react-redux";
 import { edit, editAsync, remove, removeAsync } from "../redux/actions/cartActions";
 import { useNavigate } from "react-router-dom";
@@ -47,6 +47,15 @@ function CartPage() {
 
   const getTotalCost = () => {
     return cart.reduce((prev, current) => prev + (current.unitPrice * current.quantity), 0);
+  }
+
+  const onCheckout = () => {
+    if (isAuth) {
+      navigate(`/checkout`);
+    } else {
+      navigate(`/login`);
+    }
+
   }
 
   return (
@@ -99,12 +108,22 @@ function CartPage() {
           <Card className="mb-4">
             <div className="p-4">
               <h5>Order Summary</h5>
-              <div className="d-flex justify-content-between">
+              {cart.length > 0 ?
+              cart.map(cartItem => {
+                return (
+                  <div className="d-flex justify-content-between mb-1">
+                    <span>{cartItem.title} (x{cartItem.quantity})</span>
+                    <span className="m-0 p-0">${cartItem.unitPrice * cartItem.quantity}</span>
+                  </div>
+                )
+              }) : (<></>)}
+
+              <div className="d-flex justify-content-between mt-4">
                 <p>Total:</p>
                 <h4 className="m-0 p-0">${getTotalCost()}</h4>
               </div>
               {cart.length > 0 ?
-              (<Button label="Checkout" className="p-button-outlined p-button-primary mt-4 w-100"></Button>) :
+              (<Button label="Checkout" className="p-button-outlined p-button-primary mt-4 w-100" onClick={onCheckout}></Button>) :
               (<Button label="Checkout" className="p-button-outlined p-button-primary mt-4 w-100" disabled></Button>)
               }
             </div>

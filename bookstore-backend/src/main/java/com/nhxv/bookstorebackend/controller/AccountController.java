@@ -40,9 +40,10 @@ public class AccountController {
     }
 
     @PreAuthorize("hasAnyRole('CUSTOMER' , 'ADMIN')")
-    @GetMapping("/email-search/{email}")
+    @GetMapping("/email/{email}")
     public ResponseEntity<Account> getAccountByEmail(@PathVariable String email) {
         Account account = accountRepository.findByEmail(email);
+        System.out.println(account);
         return ResponseEntity.ok().body(account);
     }
 

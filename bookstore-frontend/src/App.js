@@ -8,6 +8,7 @@ import CartPage from "./pages/CartPage";
 import CheckoutPage from "./pages/CheckoutPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
+import PrivateOutlet from "./components/PrivateOutlet";
 import PrivateRoute from "./components/PrivateRoute";
 import { useSelector } from "react-redux";
 import AccountPage from "./pages/AccountPage";
@@ -40,7 +41,7 @@ function App() {
               <Route path=":bookId" element={<BookDetailPage />} />
             </Route>
 
-            {/* for SSR redirect read this: https://gist.github.com/mjackson/b5748add2795ce7448a366ae8f8ae3bb */}
+            {/* for SSR redirect: https://gist.github.com/mjackson/b5748add2795ce7448a366ae8f8ae3bb */}
             <Route path="/" element={<Navigate replace to="/books" />} />
             <Route path="/home" element={<Navigate replace to="/books" />} />
 
@@ -49,12 +50,16 @@ function App() {
               <Route path=":authorId" element={<AuthorDetailPage />} />
             </Route>
             <Route path="/cart" element={<CartPage />} />
-            <Route path="/checkout" element={<CheckoutPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
             
-            {/* Private route */}
-            <Route path="/account" element={<PrivateRoute auth={isAuth}><AccountPage /></PrivateRoute>} />
+            {/* Private routes: https://dev.to/iamandrewluca/private-route-in-react-router-v6-lg5 */}
+            <Route path="account" element={
+              <PrivateRoute auth={isAuth}><AccountPage /></PrivateRoute>}>
+            </Route>
+            <Route path="checkout" element={
+              <PrivateRoute auth={isAuth}><CheckoutPage /></PrivateRoute>}>
+            </Route>
 
             <Route path="*" element={<NotFoundPage />}/>
           </Routes>

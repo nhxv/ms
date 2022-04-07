@@ -32,8 +32,9 @@ function App() {
                 <Route path=":authorId" element={<AuthorDetail />} />
               </Route>
             </Route>
+            
             <Route path="/home" element={<Navigate replace to="/" />} />
-              
+
           </Routes>
         </main>
       </div>

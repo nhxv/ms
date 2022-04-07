@@ -60,7 +60,7 @@ function Navbar({auth: isAuth}) {
 
           <li className="nav-item">
             <NavLink className={navData => navData.isActive ? "nav-link nav-active" : "nav-link"} to="/authors">
-              <i className="pi pi-pencil mr-2"></i>
+              <i className="pi pi-palette mr-2"></i>
               <span>Authors</span>
             </NavLink>
           </li>
