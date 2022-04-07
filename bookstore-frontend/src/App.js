@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar";
 import BookPage from "./pages/BookPage";
 import AuthorPage from "./pages/AuthorPage";
 import CartPage from "./pages/CartPage";
+import CheckoutPage from "./pages/CheckoutPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import PrivateRoute from "./components/PrivateRoute";
@@ -48,6 +49,7 @@ function App() {
               <Route path=":authorId" element={<AuthorDetailPage />} />
             </Route>
             <Route path="/cart" element={<CartPage />} />
+            <Route path="/checkout" element={<CheckoutPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
             

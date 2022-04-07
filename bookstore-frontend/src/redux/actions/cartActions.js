@@ -9,17 +9,21 @@ export const addAsync = (cartItemData) => async (dispatch) => {
   const username = JSON.parse(sessionStorage.getItem("account")).email;
   await backend.put(`accounts/cart-merge/${username}`, [cartItemData])
   .then((res) => {
-    console.log("cart after add from backend");
-    console.log(res.data.cart);
     dispatch({type: ActionTypes.CART_MERGE, payload: res.data.cart});
-  })
+  });
 }
 
 export const remove = (id) => {
   return {type: ActionTypes.CART_REMOVE, payload: id};
 }
 
-export const removeAsync = () => async (dispatch) => {}
+export const removeAsync = (cartItemData) => async (dispatch) => {
+  const username = JSON.parse(sessionStorage.getItem("account")).email;
+  await backend.put(`accounts/cart-merge/${username}`, [cartItemData])
+  .then((res) => {
+    dispatch({type: ActionTypes.CART_MERGE, payload: res.data.cart});
+  });
+}
 
 export const edit = (id, quantity) => {
   return {
@@ -28,8 +32,12 @@ export const edit = (id, quantity) => {
   }
 }
 
-export const editAsync = () => async (dispatch) => {
-
+export const editAsync = (cartItemData) => async (dispatch) => {
+  const username = JSON.parse(sessionStorage.getItem("account")).email;
+  await backend.put(`accounts/cart-merge/${username}`, [cartItemData])
+  .then((res) => {
+    dispatch({type: ActionTypes.CART_MERGE, payload: res.data.cart});
+  });
 }
 
 export const merge = (cart) => { // the "merge" logic is in backend

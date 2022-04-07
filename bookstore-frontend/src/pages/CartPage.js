@@ -4,7 +4,7 @@ import { Button } from 'primereact/button';
 import { Dropdown } from 'primereact/dropdown';
 import { Message } from 'primereact/message';
 import { useDispatch } from "react-redux";
-import { edit, remove } from "../redux/actions/cartActions";
+import { edit, editAsync, remove, removeAsync } from "../redux/actions/cartActions";
 import { useNavigate } from "react-router-dom";
 import { useRef } from "react";
 import { Toast } from "primereact/toast";
@@ -19,7 +19,8 @@ function CartPage() {
 
   const onChangeQuantity = (cartItem, e) => {
     if (isAuth) {
-      
+      cartItem.quantity = e.value - cartItem.quantity;
+      dispatch(editAsync(cartItem));
     } else {
       dispatch(edit(cartItem.bookId, e.value));
     }
@@ -27,7 +28,8 @@ function CartPage() {
 
   const onRemove = (cartItem) => {
     if (isAuth) {
-
+      cartItem.quantity *= -1;
+      dispatch(removeAsync(cartItem));
     } else {
       dispatch(remove(cartItem.bookId));
       displayRemoveToast();
@@ -50,7 +52,6 @@ function CartPage() {
   return (
     <section>
       <Toast ref={deletedToast} position="bottom-center" />
-      <h5 className="mb-4" style={{fontWeight: "500"}}>Your Shopping Cart</h5>
       <div className="row">
         <div className="col-lg-8 col-12">
           {cart.length > 0 ? 
@@ -68,7 +69,7 @@ function CartPage() {
                         <img src={cartItem.imageUrl} className="d-block mr-4" width="90" height="140" alt="" />
                         <div className="col-sm-6 col-12 m-0 p-0">
                           <h6 className="my-0 p-text-link mt-2 mt-sm-0" 
-                          onClick={() => navigate(`/cartItems/${cartItem.bookId}`)}
+                          onClick={() => navigate(`/books/${cartItem.bookId}`)}
                           style={{fontWeight: "500"}}>{cartItem.title}</h6>
                           <p className="p-text-secondary">by {cartItem.authorName}</p>
                         </div>

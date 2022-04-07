@@ -67,7 +67,7 @@ public class AccountController {
     @PreAuthorize("hasAnyRole('ADMIN', 'CUSTOMER')")
     @PutMapping("/cart-merge/{username}")
     public ResponseEntity<Account> mergeCart(@PathVariable String username,
-                                              @Valid @RequestBody List<CartItem> newCart) throws Exception {
+                                             @Valid @RequestBody List<CartItem> newCart) throws Exception {
         Account account = accountRepository.findByEmail(username);
         if (account == null) {
             throw new Exception("Username not found.");
@@ -75,42 +75,4 @@ public class AccountController {
         account.setCart(newCart);
         return ResponseEntity.ok(accountRepository.save(account));
     }
-
-//    @PreAuthorize("hasAnyRole('ADMIN', 'CUSTOMER')")
-//    @PutMapping("/cart-merge/{username}")
-//    public ResponseEntity<Account> mergeCart(@PathVariable String username,
-//                                             @Valid @RequestBody List<CartItem> newCart) throws Exception {
-//        Account account = accountRepository.findByEmail(username);
-//        if (account == null) {
-//            throw new Exception("Username not found.");
-//        }
-//        List<CartItem> accountCart = account.getCart();
-//        if (newCart == null || newCart.isEmpty()) {
-//            return ResponseEntity.ok(account);
-//        } else {
-//            if (accountCart == null || accountCart.isEmpty()) {
-//                account.setCart(newCart);
-//            } else {
-//                // merge guest cart and account cart
-//                for (CartItem newCartItem : newCart) {
-//                    int sameItemIndex = -1;
-//                    for (int i = 0; i < accountCart.size(); i++) {
-//                        if (newCartItem.getId() == accountCart.get(i).getId()) {
-//                            sameItemIndex = i;
-//                            break;
-//                        }
-//                    }
-//                    if (sameItemIndex == -1) { // new item
-//                        accountCart.add(newCartItem);
-//                    } else { // existing items, modify quantity
-//                        accountCart.get(sameItemIndex).setQuantity(
-//                                Math.min(accountCart.get(sameItemIndex).getQuantity() + newCartItem.getQuantity(), 10)
-//                        );
-//                    }
-//                    account.setCart(accountCart);
-//                }
-//            }
-//        }
-//        return ResponseEntity.ok(accountRepository.save(account));
-//    }
 }
