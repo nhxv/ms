@@ -12,9 +12,8 @@ public class BookOrder {
     @Column
     private long id;
 
-    @ManyToOne
-    @JoinColumn(name = "book_id", nullable = false)
-    private Book book;
+    @Column
+    private long bookId;
 
     @Column
     private String authorName;
@@ -71,12 +70,12 @@ public class BookOrder {
         this.unitPrice = unitPrice;
     }
 
-    public Book getBook() {
-        return book;
+    public long getBookId() {
+        return bookId;
     }
 
-    public void setBook(Book book) {
-        this.book = book;
+    public void setBookId(long bookId) {
+        this.bookId = bookId;
     }
 
     public String getAuthorName() {

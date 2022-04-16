@@ -146,7 +146,7 @@ public class BookController {
 
         book.setTitle(bookUpdate.getTitle());
         book.setDescription(bookUpdate.getDescription());
-        book.setTimePurchased(bookUpdate.getTimePurchased());
+        book.setAmountPurchased(bookUpdate.getAmountPurchased());
         book.setGenres(bookUpdate.getGenres());
         book.setUnitPrice(book.getUnitPrice());
         book.setReviews(bookUpdate.getReviews());

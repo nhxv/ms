@@ -24,10 +24,6 @@ public class Book {
     @JoinColumn(name = "book_id")
     private List<Review> reviews;
 
-    @JsonIgnore
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "book")
-    private Set<BookOrder> bookOrders;
-
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "image_id")
     private Image image;
@@ -41,7 +37,7 @@ public class Book {
     private String description;
 
     @Column
-    private long timePurchased;
+    private long amountPurchased;
 
     @NotBlank
     @Column
@@ -98,12 +94,12 @@ public class Book {
         this.description = description;
     }
 
-    public long getTimePurchased() {
-        return timePurchased;
+    public long getAmountPurchased() {
+        return amountPurchased;
     }
 
-    public void setTimePurchased(long timePurchased) {
-        this.timePurchased = timePurchased;
+    public void setAmountPurchased(long amountPurchased) {
+        this.amountPurchased = amountPurchased;
     }
 
     public BigDecimal getUnitPrice() {
@@ -120,14 +116,6 @@ public class Book {
 
     public void setAvailable(boolean available) {
         this.available = available;
-    }
-
-    public Set<BookOrder> getBookOrders() {
-        return bookOrders;
-    }
-
-    public void setBookOrders(Set<BookOrder> bookOrders) {
-        this.bookOrders = bookOrders;
     }
 
     public Image getImage() {
@@ -165,7 +153,7 @@ public class Book {
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
-                ", timePurchased=" + timePurchased +
+                ", amountPurchased=" + amountPurchased +
                 ", unitPrice=" + unitPrice +
                 ", available=" + available +
                 '}';

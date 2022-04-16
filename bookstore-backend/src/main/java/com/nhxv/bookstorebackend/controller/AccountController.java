@@ -20,30 +20,22 @@ import java.util.List;
 @RequestMapping("/api/accounts")
 public class AccountController {
     private AccountRepository accountRepository;
-    private CartItemRepository cartItemRepository;
     private AccountService accountService;
 
     @Autowired
     public AccountController(AccountRepository accountRepository,
-                             CartItemRepository cartItemRepository,
                              AccountService accountService) {
         this.accountRepository = accountRepository;
-        this.cartItemRepository = cartItemRepository;
         this.accountService = accountService;
     }
 
     @PreAuthorize("hasAnyRole('CUSTOMER' , 'ADMIN')")
-    @GetMapping("/{accountId}")
-    public ResponseEntity<Account> getAccount(@PathVariable long accountId) throws Exception {
-        Account account = accountRepository.findById(accountId).orElseThrow(() -> new Exception("User not found for id: " + accountId));
-        return ResponseEntity.ok().body(account);
-    }
-
-    @PreAuthorize("hasAnyRole('CUSTOMER' , 'ADMIN')")
-    @GetMapping("/email/{email}")
-    public ResponseEntity<Account> getAccountByEmail(@PathVariable String email) {
+    @GetMapping("/{email}")
+    public ResponseEntity<Account> getAccountByEmail(@PathVariable String email) throws Exception {
         Account account = accountRepository.findByEmail(email);
-        System.out.println(account);
+        if (account == null) {
+            throw new Exception("Username not found.");
+        }
         return ResponseEntity.ok().body(account);
     }
 
@@ -60,7 +52,6 @@ public class AccountController {
         account.setName(accountUpdate.getName());
         account.setAddress(accountUpdate.getAddress());
         account.setPhone(accountUpdate.getPhone());
-        account.setAccountOrders(accountUpdate.getAccountOrders());
         account.setReviews(accountUpdate.getReviews());
         return ResponseEntity.ok(accountRepository.save(account));
     }

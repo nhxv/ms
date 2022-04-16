@@ -11,7 +11,7 @@ public class BookDto {
     private String title;
     private Image image;
     private String description;
-    private long timePurchased;
+    private long amountPurchased;
     private BigDecimal unitPrice;
     private Set<Genre> genres;
     private boolean available;
@@ -58,12 +58,12 @@ public class BookDto {
         this.description = description;
     }
 
-    public long getTimePurchased() {
-        return timePurchased;
+    public long getAmountPurchased() {
+        return amountPurchased;
     }
 
-    public void setTimePurchased(long timePurchased) {
-        this.timePurchased = timePurchased;
+    public void setAmountPurchased(long amountPurchased) {
+        this.amountPurchased = amountPurchased;
     }
 
     public BigDecimal getUnitPrice() {

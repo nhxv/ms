@@ -99,7 +99,7 @@ function AuthorList() {
             <Author author={author} />
           </div>
           )
-        }) : (<div>Nothing to show</div>)
+        }) : (<div className="row justify-content-center"><div>Nothing to show</div></div>)
       }
     </div>
     <div className="mx-auto pb-4">

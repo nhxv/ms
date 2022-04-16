@@ -43,8 +43,6 @@ public class AccountOrder {
     @Column
     private String phone;
 
-    public enum OrderStatus {PROCESSING, COMPLETED, CANCELED}
-
     // https://stackoverflow.com/questions/27804069/hibernate-mapping-between-postgresql-enum-and-java-enum
     @Enumerated(EnumType.STRING)
     @Column(columnDefinition = "order_status")

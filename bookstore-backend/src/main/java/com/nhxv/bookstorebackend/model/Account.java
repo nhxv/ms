@@ -40,7 +40,7 @@ public class Account {
     @Column(length = 15)
     private String phone;
 
-    @OneToMany(cascade = CascadeType.ALL ,orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "account_id")
     private List<CartItem> cart;
 
@@ -165,6 +165,8 @@ public class Account {
                         .collect(Collectors.toList())
                 );
             }
+        } else {
+            this.cart.clear();
         }
     }
 }

@@ -9,6 +9,7 @@ import { useDispatch } from "react-redux";
 import { Dropdown } from "primereact/dropdown";
 import { useSelector } from "react-redux";
 import { Toast } from "primereact/toast";
+import Spinner from "../components/Spinner";
 
 function BookDetailPage() {
   const addedToast = useRef(null);
@@ -91,7 +92,11 @@ function BookDetailPage() {
   }
 
   if (!book) {
-    return (<></>)
+    return (
+    <>
+      <Spinner />
+    </>
+    )
   } else {
     return (
       <>

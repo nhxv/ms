@@ -3,6 +3,7 @@ package com.nhxv.bookstorebackend.service.impl;
 import com.nhxv.bookstorebackend.dto.AuthorDto;
 import com.nhxv.bookstorebackend.dto.BookDto;
 import com.nhxv.bookstorebackend.model.Book;
+import com.nhxv.bookstorebackend.model.BookOrder;
 import com.nhxv.bookstorebackend.service.BookService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -13,8 +14,6 @@ import org.springframework.stereotype.Service;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import java.math.BigInteger;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -58,7 +57,7 @@ public class BookServiceImpl implements BookService {
             } else if (order.getProperty().equals("author")) {
                 sqlQuery.append(" order by author.name ").append(order.getDirection());
             } else if (order.getProperty().equals("popularity")) {
-                sqlQuery.append(" order by time_purchased ").append(order.getDirection());
+                sqlQuery.append(" order by amount_purchased ").append(order.getDirection());
             }
         }
         sqlQuery.append(" limit ").append(pageable.getPageSize()).append(" offset ").append(pageable.getOffset());
@@ -74,6 +73,27 @@ public class BookServiceImpl implements BookService {
         total = Long.parseLong(String.valueOf(objects.get(0)[0]));
         List<BookDto> bookDtos = books.stream().map(book -> convertToBookDto(book)).collect(Collectors.toList());
         return new PageImpl<>(bookDtos, pageable, total);
+    }
+
+    @Override
+    public List<Book> findBooksFromOrder(List<BookOrder> bookOrders) throws Exception {
+        String selectStr = "select distinct ";
+        StringBuilder sqlQuery = new StringBuilder("select distinct book.* from bookstore.book book where ");
+        Iterator<BookOrder> iterator = bookOrders.iterator();
+        while (iterator.hasNext()) {
+            BookOrder bookOrder = iterator.next();
+            sqlQuery.append("book.id = ").append(bookOrder.getBookId());
+            if (iterator.hasNext()) {
+                sqlQuery.append(" or ");
+            }
+        }
+        sqlQuery.append(";");
+        Query booksQuery = entityManager.createNativeQuery(selectStr + sqlQuery, Book.class);
+        List<Book> books = booksQuery.getResultList();
+        if (books == null || books.isEmpty()) {
+            throw new Exception("Cannot find any item matching the requirements");
+        }
+        return books;
     }
 
     @Override
@@ -93,7 +113,7 @@ public class BookServiceImpl implements BookService {
             bookDto.setTitle(book.getTitle());
             bookDto.setImage(book.getImage());
             bookDto.setDescription(book.getDescription());
-            bookDto.setTimePurchased(book.getTimePurchased());
+            bookDto.setAmountPurchased(book.getAmountPurchased());
             bookDto.setUnitPrice(book.getUnitPrice());
             bookDto.setGenres(book.getGenres());
             bookDto.setAvailable(book.isAvailable());

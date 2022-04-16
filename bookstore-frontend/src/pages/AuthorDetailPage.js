@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import BookPublish from "../components/BookPublish";
 import backend from "../redux/api";
+import Spinner from "../components/Spinner";
 
 function AuthorDetailPage() {
   const [author, setAuthor] = useState(null);
@@ -23,7 +24,11 @@ function AuthorDetailPage() {
   }, [authorId]);
 
   if (!author) {
-    return (<></>)
+    return (
+    <>
+      <Spinner></Spinner>
+    </>
+    )
   } else {
     return(
       <>
