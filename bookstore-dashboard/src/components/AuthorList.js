@@ -99,7 +99,7 @@ function AuthorList() {
       <div className="row">
         {authorList ? authorList.map((author) => {
           return (
-          <div key={author.id} className="col-lg-4 col-md-6 col-12 mb-4">
+          <div key={author.id} className="col-xl-4 col-md-6 col-12 mb-4">
             <AuthorPanel author={author} />
           </div>
           )

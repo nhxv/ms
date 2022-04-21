@@ -32,7 +32,7 @@ function AuthorPanel({ author }) {
           </div>
 
           <div className="text-center">
-            <h5>{author.name}</h5>
+            <h6>{author.name}</h6>
           </div>
           <Button label="Read more" onClick={() => navigate(`${author.id}`)}></Button>
           <Button label="Edit author info" className="mt-3 p-button-fade p-button-secondary" onClick={onOpenAuthorForm}></Button>

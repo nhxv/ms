@@ -27,7 +27,7 @@ function HomePage() {
           <Card>
             <div className="p-4">
               <h6 className="m-0">Revenue</h6>
-              <h1 className="m-0">0</h1>
+              <h1 className="m-0">$0</h1>
             </div>
           </Card>
         </div>

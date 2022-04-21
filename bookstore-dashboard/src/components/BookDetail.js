@@ -70,11 +70,15 @@ function BookDetail() {
               <div>
                 {book.genres.map((genre) => {
                 return (
-                <Tag key={genre.id} value={genre.name.toLowerCase()} rounded className="mr-2 mb-3 p-tag-fade-secondary"></Tag>
+                <Tag key={genre.id} rounded className="mr-2 p-tag-fade-secondary">
+                  <span onClick={() => navigate(`/books?page=0&size=9&sortProperty=title&sortDirection=asc&genres=${genre.name}`)}>
+                    {genre.name.toLowerCase()}
+                  </span>
+                </Tag>
                 )
                 })}
               </div>
-              <p className="p-text-secondary mb-0">Description:</p>
+              <p className="p-text-secondary mb-0 mt-4">Description:</p>
               <p className="mt-0 mb-3" style={{whiteSpace: "pre-wrap"}}>{book.description}</p>
             </div>
           </div>
