@@ -1,0 +1,51 @@
+.p-hidden-accessible {
+  position: relative;
+}
+
+.p-inputnumber-input {
+  width: 2.75rem;
+}
+
+.p-text-primary {
+  color: $primary !important;
+}
+
+.p-text-secondary {
+  color: $neutral-400 !important;
+}
+
+.p-text-success {
+  color: $success !important;
+}
+
+.p-text-info {
+  color: $info !important;
+}
+
+.p-text-warning {
+  color: $warning !important;
+}
+
+.p-text-help {
+  color: $help !important;
+}
+
+.p-text-danger {
+  color: $danger !important;
+}
+
+.p-text-link {
+  cursor: pointer;
+}
+
+.p-text-link:hover {
+  text-decoration: underline;
+}
+
+.p-text-link:focus {
+  text-decoration: underline;
+}
+
+.p-text-bold {
+  font-weight: 700 !important;
+}

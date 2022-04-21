@@ -6,11 +6,16 @@ import com.nhxv.bookstorebackend.repository.AccountOrderRepository;
 import com.nhxv.bookstorebackend.repository.AccountRepository;
 import com.nhxv.bookstorebackend.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -28,6 +33,23 @@ public class AccountOrderController {
         this.accountOrderRepository = accountOrderRepository;
         this.accountRepository = accountRepository;
         this.bookService = bookService;
+    }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping
+    public List<AccountOrder> getOrdersByStatus(@RequestParam(name = "status") String status) {
+        List<AccountOrder> orders = this.accountOrderRepository.findByOrderStatus(OrderStatus.valueOf(status));
+        Collections.reverse(orders);
+        return orders;
+    }
+
+
+    @PreAuthorize("hasAnyRole('ADMIN', 'CUSTOMER')")
+    @GetMapping("/{username}")
+    public List<AccountOrder> getAccountOrders(@PathVariable String username) {
+        List<AccountOrder> orders = this.accountOrderRepository.findByAccount_Email(username);
+        Collections.reverse(orders);
+        return orders;
     }
 
     @PreAuthorize("hasAnyRole('ADMIN', 'CUSTOMER')")

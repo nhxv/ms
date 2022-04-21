@@ -69,23 +69,8 @@ input[type="search"]::-webkit-search-results-button,
 input[type="search"]::-webkit-search-results-decoration { display: none; }
 
 @keyframes p-progress-spinner-color {
-  // 100%,
-  // 0% {
-  //     stroke: #d62d20;
-  // }
-  // 40% {
-  //     stroke: #0057e7;
-  // }
-  // 66% {
-  //     stroke: #008744;
-  // }
-  // 80%,
-  // 90% {
-  //     stroke: #ffa700;
-  // }
   100%, 0% {
     stroke: $primary;
   }
-
 }
 

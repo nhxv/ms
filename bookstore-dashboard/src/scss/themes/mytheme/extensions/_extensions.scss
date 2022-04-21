@@ -5,6 +5,7 @@
 @import '_navbar.scss';
 @import '_sidebar.scss';
 @import '_tooltip.scss';
+@import '_utilities.scss';
 
 /* Basic css styling for html tag */
 body {
@@ -25,7 +26,7 @@ a:hover {
 h1, h2, h3, h4, h5, h6 {
   margin: 1.5rem 0 1rem;
   font-family: inherit;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 1.2;
   color: inherit;
 }
@@ -62,51 +63,14 @@ small {
   font-size: 75%;
 }
 
-.p-hidden-accessible {
-  position: relative;
-}
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration { display: none; }
 
-.p-inputnumber-input {
-  width: 2.75rem;
-}
-
-.p-text-primary {
-  color: $primary !important;
-}
-
-.p-text-secondary {
-  color: $neutral-400 !important;
-}
-
-.p-text-success {
-  color: $success !important;
-}
-
-.p-text-info {
-  color: $info !important;
-}
-
-.p-text-warning {
-  color: $warning !important;
-}
-
-.p-text-help {
-  color: $help !important;
-}
-
-.p-text-danger {
-  color: $danger !important;
-}
-
-.p-text-link {
-  cursor: pointer;
-}
-
-.p-text-link:hover {
-  text-decoration: underline;
-}
-
-.p-text-link:focus {
-  text-decoration: underline;
+@keyframes p-progress-spinner-color {
+  100%, 0% {
+    stroke: $primary;
+  }
 }
 

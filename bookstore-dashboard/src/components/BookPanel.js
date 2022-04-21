@@ -32,7 +32,7 @@ function BookPanel({ book }) {
           </div>
 
           <div className="text-center">
-            <h5>{book.title}</h5>
+            <h6>{book.title}</h6>
           </div>
           <Button label="Read more" className="p-button" onClick={() => navigate(`${book.id}`)}></Button>
           <Button label="Edit book info" className="mt-3 p-button-fade p-button-secondary" onClick={onOpenBookForm}></Button>

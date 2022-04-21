@@ -24,9 +24,19 @@
       color: $successButtonTextColor;
   }
 
+  &.p-tag-fade-success {
+    background-color: $fadeSuccessButtonBg;
+    color: $fadeSuccessButtonText;
+  }
+
   &.p-tag-info {
       background-color: $infoButtonBg;
       color: $infoButtonTextColor;
+  }
+
+  &.p-tag-fade-info {
+    background-color: $fadeInfoButtonBg;
+    color: $fadeInfoButtonText;
   }
 
   &.p-tag-warning {
@@ -34,9 +44,19 @@
       color: $warningButtonTextColor;
   }
 
+  &.p-tag-fade-warning {
+    background-color: $fadeWarningButtonBg;
+    color: $fadeWarningButtonText;
+}
+
   &.p-tag-danger {
       background-color: $dangerButtonBg;
       color: $dangerButtonTextColor;
+  }
+
+  &.p-tag-fade-danger {
+    background-color: $fadeDangerButtonBg;
+    color: $fadeDangerButtonText;
   }
 
   .p-tag-icon {

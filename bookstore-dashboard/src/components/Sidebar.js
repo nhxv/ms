@@ -38,7 +38,7 @@ function Sidebar() {
 
         <li className="nav-item text-center mb-2 text-lg-left tooltip">
           <NavLink className={navData => setNavLink(navData)} to="/authors">
-            <i className="pi pi-pencil"></i>
+            <i className="pi pi-palette"></i>
             <span className="ml-2 d-lg-inline d-none">Authors</span>
           </NavLink>
           <span className="tooltiptext d-lg-none">Authors</span>

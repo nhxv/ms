@@ -13,7 +13,7 @@ import java.util.List;
 @Entity
 @Table(name = "account_order")
 @TypeDef(name = "pgsql_enum", typeClass = PostgreSQLEnumType.class)
-public class AccountOrder {
+public class AccountOrder implements Comparable<AccountOrder> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
@@ -132,5 +132,10 @@ public class AccountOrder {
 
     public void setOrderStatus(OrderStatus orderStatus) {
         this.orderStatus = orderStatus;
+    }
+
+    @Override
+    public int compareTo(AccountOrder accountOrder) {
+        return this.dateCreated.compareTo(accountOrder.getDateCreated());
     }
 }

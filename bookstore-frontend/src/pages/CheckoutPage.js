@@ -7,7 +7,7 @@ import backend from "../redux/api";
 import { useDispatch } from "react-redux";
 import { reset } from "../redux/actions/cartActions";
 import { Dialog } from "primereact/dialog";
-import ShippingForm from "../components/ShippingForm";
+import AccountForm from "../components/AccountForm";
 import Spinner from "../components/Spinner";
 
 function CheckoutPage() {
@@ -15,10 +15,10 @@ function CheckoutPage() {
   const [account, setAccount] = useState();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [displayShippingForm, setDisplayShippingForm] = useState(false);
+  const [displayAccountForm, setDisplayAccountForm] = useState(false);
 
   const dialogFuncMap = {
-    "displayShippingForm": setDisplayShippingForm,
+    "displayAccountForm": setDisplayAccountForm,
   };
 
   useEffect(() => {
@@ -83,12 +83,12 @@ function CheckoutPage() {
     });
   }
 
-  const onOpenShippingForm = () => {
-    dialogFuncMap["displayShippingForm"](true);
+  const onOpenAccountForm = () => {
+    dialogFuncMap["displayAccountForm"](true);
   }
 
-  const onHideShippingForm = () => {
-    dialogFuncMap["displayShippingForm"](false);
+  const onHideAccountForm = () => {
+    dialogFuncMap["displayAccountForm"](false);
   }
 
   if (!account) {
@@ -112,9 +112,9 @@ function CheckoutPage() {
             <p className="mt-0 mb-3">{account.phone}</p>
             <Button icon="pi pi-pencil" label="Edit shipping info" 
             className="p-button-fade p-button-primary mt-1 mb-4"
-            onClick={onOpenShippingForm}></Button>
-            <Dialog header="Shipping form" visible={displayShippingForm} style={{ width: "50%" }} onHide={onHideShippingForm}>
-              <ShippingForm onHide={onHideShippingForm} onEdit={onEditShippingInfo} account={account} />
+            onClick={onOpenAccountForm}></Button>
+            <Dialog header="Shipping info" visible={displayAccountForm} style={{ width: "50%" }} onHide={onHideAccountForm}>
+              <AccountForm onHide={onHideAccountForm} onEdit={onEditShippingInfo} account={account} />
             </Dialog>
           </div>
           <div className="col-lg-4 col-12">
