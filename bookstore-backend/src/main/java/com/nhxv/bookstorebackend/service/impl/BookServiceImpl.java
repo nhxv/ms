@@ -78,7 +78,7 @@ public class BookServiceImpl implements BookService {
     @Override
     public List<Book> findBooksFromOrder(List<BookOrder> bookOrders) throws Exception {
         String selectStr = "select distinct ";
-        StringBuilder sqlQuery = new StringBuilder("select distinct book.* from bookstore.book book where ");
+        StringBuilder sqlQuery = new StringBuilder("book.* from bookstore.book book where ");
         Iterator<BookOrder> iterator = bookOrders.iterator();
         while (iterator.hasNext()) {
             BookOrder bookOrder = iterator.next();

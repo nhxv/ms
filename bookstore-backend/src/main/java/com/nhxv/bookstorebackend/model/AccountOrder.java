@@ -138,4 +138,17 @@ public class AccountOrder implements Comparable<AccountOrder> {
     public int compareTo(AccountOrder accountOrder) {
         return this.dateCreated.compareTo(accountOrder.getDateCreated());
     }
+
+    @Override
+    public String toString() {
+        return "AccountOrder{" +
+                "bookOrders=" + bookOrders +
+                ", dateCreated=" + dateCreated +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", address='" + address + '\'' +
+                ", phone='" + phone + '\'' +
+                ", orderStatus=" + orderStatus +
+                '}';
+    }
 }

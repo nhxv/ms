@@ -160,7 +160,7 @@
         @include scaledPadding($buttonPadding, $scaleSM);
 
         .p-button-icon {
-            @include scaledFontSize($primeIconFontSize, $scaleSM);
+          @include scaledFontSize($primeIconFontSize, $scaleSM);
         }
     }
 

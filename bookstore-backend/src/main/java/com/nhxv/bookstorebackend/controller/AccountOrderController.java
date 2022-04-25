@@ -1,6 +1,7 @@
 package com.nhxv.bookstorebackend.controller;
 
 import com.nhxv.bookstorebackend.dto.AccountOrderDto;
+import com.nhxv.bookstorebackend.dto.OrderUpdateDto;
 import com.nhxv.bookstorebackend.model.*;
 import com.nhxv.bookstorebackend.repository.AccountOrderRepository;
 import com.nhxv.bookstorebackend.repository.AccountRepository;
@@ -39,7 +40,6 @@ public class AccountOrderController {
     @GetMapping
     public List<AccountOrder> getOrdersByStatus(@RequestParam(name = "status") String status) {
         List<AccountOrder> orders = this.accountOrderRepository.findByOrderStatus(OrderStatus.valueOf(status));
-        Collections.reverse(orders);
         return orders;
     }
 
@@ -48,7 +48,6 @@ public class AccountOrderController {
     @GetMapping("/{username}")
     public List<AccountOrder> getAccountOrders(@PathVariable String username) {
         List<AccountOrder> orders = this.accountOrderRepository.findByAccount_Email(username);
-        Collections.reverse(orders);
         return orders;
     }
 
@@ -75,22 +74,36 @@ public class AccountOrderController {
     @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/{accountOrderId}")
     public ResponseEntity<AccountOrder> changeOrderStatus(@PathVariable long accountOrderId,
-                                                          @RequestBody String orderStatus) throws Exception {
+                                                          @RequestBody OrderUpdateDto orderUpdateDto) throws Exception {
         AccountOrder accountOrder = this.accountOrderRepository
                 .findById(accountOrderId).orElseThrow(() -> new Exception("cannot find order"));
+
+        if (orderUpdateDto.getStatus().equals(accountOrder.getOrderStatus().name())) {
+            accountOrder.setDateCreated(orderUpdateDto.getDate());
+            return ResponseEntity.ok(this.accountOrderRepository.save(accountOrder));
+        }
+
+        // change amount purchased of every book order
         List<BookOrder> bookOrders = accountOrder.getBookOrders();
-        if (orderStatus.equals("COMPLETED")) {
-            List<Book> books = bookService.findBooksFromOrder(bookOrders);
-            for (Book book : books) { // increment amount purchased of every book order
-                BookOrder bookOrder = bookOrders.stream()
-                        .filter(order -> order.getBookId() == book.getId())
-                        .findFirst().orElse(null);
-                assert bookOrder != null;
+        List<Book> books = bookService.findBooksFromOrder(bookOrders);
+        for (Book book : books) {
+            BookOrder bookOrder = bookOrders.stream()
+                    .filter(order -> order.getBookId() == book.getId())
+                    .findFirst().orElse(null);
+            assert bookOrder != null;
+
+            if (orderUpdateDto.getStatus().equals("COMPLETED")) {
                 long amount = book.getAmountPurchased() + bookOrder.getQuantity();
                 book.setAmountPurchased(amount);
             }
+
+            if (accountOrder.getOrderStatus().name().equals("COMPLETED")) {
+                long amount = book.getAmountPurchased() - bookOrder.getQuantity();
+                book.setAmountPurchased(amount);
+            }
         }
-        accountOrder.setOrderStatus(OrderStatus.valueOf(orderStatus));
-        return ResponseEntity.ok(accountOrder);
+        accountOrder.setOrderStatus(OrderStatus.valueOf(orderUpdateDto.getStatus()));
+        accountOrder.setDateCreated(orderUpdateDto.getDate());
+        return ResponseEntity.ok(this.accountOrderRepository.save(accountOrder));
     }
 }

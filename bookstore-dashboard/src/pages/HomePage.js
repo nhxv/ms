@@ -1,4 +1,5 @@
 import { Card } from "primereact/card";
+import OrderList from "../components/OrderList";
 
 function HomePage() {
  return (
@@ -8,7 +9,7 @@ function HomePage() {
         <div className="col-lg-3 mb-4">
           <Card>
             <div className="p-4">
-              <h6 className="m-0">Pending orders</h6>
+              <h6 className="m-0">All orders</h6>
               <h1 className="m-0">0</h1>
             </div>
           </Card>
@@ -17,8 +18,8 @@ function HomePage() {
         <div className="col-lg-3 mb-4">
           <Card>
             <div className="p-4">
-              <h6 className="m-0">Total book sales</h6>
-              <h1 className="m-0">$0</h1>
+              <h6 className="m-0">Total sales</h6>
+              <h1 className="m-0">0</h1>
             </div>
           </Card>
         </div>
@@ -41,6 +42,13 @@ function HomePage() {
           </Card>
         </div>
       </div>
+
+      <div className="mt-5">
+        <h5>Orders</h5>
+        <OrderList />
+      </div>
+
+      <div className="pb-2"></div>
 
     </section>
    </>

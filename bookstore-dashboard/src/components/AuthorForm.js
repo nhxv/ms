@@ -1,13 +1,13 @@
-import { useState } from 'react';
-import { useFormik } from 'formik';
-import { useDispatch } from 'react-redux';
-import { addAuthor } from '../redux/actions/authorActions';
-import { editAuthor } from '../redux/actions/authorActions';
-import { InputText } from 'primereact/inputtext';
-import { Button } from 'primereact/button';
-import { Calendar } from 'primereact/calendar';
-import { Dropdown } from 'primereact/dropdown';
-import { FileUpload } from 'primereact/fileupload';
+import { useState } from "react";
+import { useFormik } from "formik";
+import { useDispatch } from "react-redux";
+import { addAuthor } from "../redux/actions/authorActions";
+import { editAuthor } from "../redux/actions/authorActions";
+import { InputText } from "primereact/inputtext";
+import { Button } from "primereact/button";
+import { Calendar } from "primereact/calendar";
+import { Dropdown } from "primereact/dropdown";
+import { FileUpload } from "primereact/fileupload";
 
 function AuthorForm ({ onHide, authorEdit }) {
   const [imageFile, setImageFile] = useState(null);
@@ -25,8 +25,8 @@ function AuthorForm ({ onHide, authorEdit }) {
     },
     onSubmit: (basicData) => {
       let authorFormData = new FormData();
-      authorFormData.append('imageFile', imageFile);
-      authorFormData.append('author', JSON.stringify({
+      authorFormData.append("imageFile", imageFile);
+      authorFormData.append("author", JSON.stringify({
         name: basicData.name, 
         hometown: basicData.hometown, 
         dob: birthday,
@@ -35,10 +35,10 @@ function AuthorForm ({ onHide, authorEdit }) {
       if (authorEdit) {
         dispatch(editAuthor(authorFormData, authorEdit.id))
         .then(() => {
-          onHide();
           setImageFile(null);
           setBirthday(null);
-          authorForm.resetForm();  
+          authorForm.resetForm(); 
+          onHide(); 
         })
         .catch(e => {
           // TODO: display error UI
@@ -49,10 +49,10 @@ function AuthorForm ({ onHide, authorEdit }) {
       } else {
         dispatch(addAuthor(authorFormData))
         .then(() => {
-          onHide();
           setImageFile(null);
           setBirthday(null);
           authorForm.resetForm();  
+          onHide();
         })
         .catch(e => {
           // TODO: display error UI
@@ -99,14 +99,14 @@ function AuthorForm ({ onHide, authorEdit }) {
               <label htmlFor="name" className="d-block">Full name:</label>
               <InputText id="name" name="name" className="d-block" 
               value={authorForm.values.name} onChange={authorForm.handleChange}  
-              style={{width: '100%'}} autoFocus></InputText>  
+              style={{width: "100%"}} autoFocus></InputText>  
             </div>
 
             <div className="mb-4">
               <label htmlFor="hometown" className="d-block">Hometown:</label>
               <InputText id="hometown" name="hometown" className="d-block" 
               value={authorForm.values.hometown} onChange={authorForm.handleChange}  
-              style={{width: '100%'}}></InputText>  
+              style={{width: "100%"}}></InputText>  
             </div>
 
             <div className="mb-4">
@@ -114,7 +114,7 @@ function AuthorForm ({ onHide, authorEdit }) {
               <Calendar id="dob" value={birthday} 
               onChange={(e) => setBirthday(e.value)} monthNavigator yearNavigator yearRange="1950:2020"
               monthNavigatorTemplate={monthNavigatorTemplate} yearNavigatorTemplate={yearNavigatorTemplate} 
-              style={{width: '100%'}}/>
+              style={{width: "100%"}}/>
             </div>
 
             <div className="mb-4">
@@ -141,7 +141,7 @@ function AuthorForm ({ onHide, authorEdit }) {
               ): <></>}
             </div>
 
-            <Button label="Submit" type="submit" className="mt-2" style={{width: '100%'}}></Button>
+            <Button label="Submit" type="submit" className="mt-2" style={{width: "100%"}}></Button>
           </form>
         </div>
       </div>

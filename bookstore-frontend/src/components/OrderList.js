@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Tag } from "primereact/tag";
 import backend from "../redux/api";
 import { useNavigate } from "react-router-dom";
+import StatusTag from "./StatusTag";
 
 function OrderList() {
   const [orders, setOrders] = useState([]);
@@ -43,7 +44,7 @@ function OrderList() {
 
               <div>
                 <p className="p-text-secondary mb-0 mt-2 mt-sm-0">Status:</p>
-                <Tag className="p-tag-fade-warning" value={order.orderStatus}></Tag>
+                <StatusTag status={order.orderStatus} />
               </div>
             </div>
 
