@@ -40,6 +40,7 @@ public class AccountOrderController {
     @GetMapping
     public List<AccountOrder> getOrdersByStatus(@RequestParam(name = "status") String status) {
         List<AccountOrder> orders = this.accountOrderRepository.findByOrderStatus(OrderStatus.valueOf(status));
+        Collections.sort(orders);
         return orders;
     }
 
@@ -48,6 +49,7 @@ public class AccountOrderController {
     @GetMapping("/{username}")
     public List<AccountOrder> getAccountOrders(@PathVariable String username) {
         List<AccountOrder> orders = this.accountOrderRepository.findByAccount_Email(username);
+        Collections.sort(orders);
         return orders;
     }
 

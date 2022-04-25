@@ -136,7 +136,7 @@ public class AccountOrder implements Comparable<AccountOrder> {
 
     @Override
     public int compareTo(AccountOrder accountOrder) {
-        return this.dateCreated.compareTo(accountOrder.getDateCreated());
+        return accountOrder.getDateCreated().compareTo(this.dateCreated);
     }
 
     @Override
