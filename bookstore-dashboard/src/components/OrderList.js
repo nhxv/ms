@@ -16,16 +16,19 @@ function OrderList() {
   const [selectedStatus, setSelectedStatus] = useState(statuses[0]);
   const [reloadSwitch, setReloadSwitch] = useState(false);
   const [displayOrderForm, setDisplayOrderForm] = useState(false);
+  const [orderEdit, setOrderEdit] = useState(null);
 
   const dialogFuncMap = {
     "displayOrderForm": setDisplayOrderForm,
   };
 
-  const onOpenOrderForm = () => {
+  const onOpenOrderForm = (order) => {
+    setOrderEdit(order);
     dialogFuncMap["displayOrderForm"](true);
   }
 
   const onHideOrderForm = () => {
+    setOrderEdit(null);
     dialogFuncMap["displayOrderForm"](false);
   }
   
@@ -47,8 +50,7 @@ function OrderList() {
 
   return (
   <div>
-    <Dropdown className="mb-4" options={statuses} value={selectedStatus}
-    onChange={(e) => setSelectedStatus(e.value)} />
+    <Dropdown className="mb-4" options={statuses} value={selectedStatus} onChange={(e) => setSelectedStatus(e.value)} />
 
     {orders.length > 0 ? orders.map(order => {
       return (
@@ -76,17 +78,8 @@ function OrderList() {
               <StatusTag status={order.orderStatus}></StatusTag>
               <div className="d-block mt-2">
                 <Button className="p-button-sm p-button-fade p-button-secondary" 
-                label="Edit order" onClick={onOpenOrderForm} />
-                <Dialog header="Order form" visible={displayOrderForm} style={{ width: "50%" }} 
-                dismissableMask onHide={onHideOrderForm}>
-                  <OrderForm onUpdate={onUpdateOrder} 
-                  orderDate={new Date(order.dateCreated)} 
-                  orderStatus={order.orderStatus} 
-                  orderId={order.id} />
-                </Dialog>
+                label="Edit order" onClick={() => onOpenOrderForm(order)} />
               </div>
-
-
             </div>
           </div>
 
@@ -120,7 +113,12 @@ function OrderList() {
             )
           })}
         </div>
-      </Card>)}) : <></>}
+      </Card>)}
+      ) : <></>}
+      <Dialog header="Order form" visible={displayOrderForm} 
+      style={{ width: "50%" }} dismissableMask onHide={onHideOrderForm}>
+        <OrderForm onUpdate={onUpdateOrder} order={orderEdit} />
+      </Dialog>
     <div className="mb-4"></div>
   </div>
   );

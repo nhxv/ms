@@ -1,21 +1,22 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import { Dropdown } from "primereact/dropdown";
 import { Calendar } from "primereact/calendar";
 import { Button } from "primereact/button";
 import backend from "../redux/api";
 
-function OrderForm({ onUpdate, orderDate, orderStatus, orderId}) {
-  const [date, setDate] = useState(orderDate);
+function OrderForm({ onUpdate, order }) {
+  const [date, setDate] = useState(new Date(order?.dateCreated));
   const statuses = ["PROCESSING", "COMPLETED", "CANCELED"];
-  const [selectedStatus, setSelectedStatus] = useState(orderStatus);
+  const [selectedStatus, setSelectedStatus] = useState(order?.orderStatus);
+
+  useEffect(() => {console.log(order);}, []);
 
   const orderForm = useFormik({
     initialValues: {},
     onSubmit: () => {
-      backend.put(`/account-orders/${orderId}`, {status: selectedStatus, date: date})
-      .then((res) => {
-        console.log(res.data);
+      backend.put(`/account-orders/${order.id}`, {status: selectedStatus, date: date})
+      .then(() => {
         onUpdate();
       })
       .catch((err) => {console.log(err);});

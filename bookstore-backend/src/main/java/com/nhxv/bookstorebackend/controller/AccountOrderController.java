@@ -94,11 +94,13 @@ public class AccountOrderController {
                     .findFirst().orElse(null);
             assert bookOrder != null;
 
+            // when change order status to "completed", increase amount purchased
             if (orderUpdateDto.getStatus().equals("COMPLETED")) {
                 long amount = book.getAmountPurchased() + bookOrder.getQuantity();
                 book.setAmountPurchased(amount);
             }
 
+            // when change order status from "completed", decrease amount purchased
             if (accountOrder.getOrderStatus().name().equals("COMPLETED")) {
                 long amount = book.getAmountPurchased() - bookOrder.getQuantity();
                 book.setAmountPurchased(amount);
