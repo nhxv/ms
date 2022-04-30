@@ -1,8 +1,13 @@
 package com.nhxv.bookstorebackend.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.itextpdf.text.*;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
 import com.nhxv.bookstorebackend.dto.BookDto;
 import com.nhxv.bookstorebackend.exception.ExistException;
+import com.nhxv.bookstorebackend.model.AccountOrder;
 import com.nhxv.bookstorebackend.model.Author;
 import com.nhxv.bookstorebackend.model.Book;
 import com.nhxv.bookstorebackend.repository.AuthorRepository;
@@ -10,20 +15,28 @@ import com.nhxv.bookstorebackend.repository.BookRepository;
 import com.nhxv.bookstorebackend.service.BookService;
 import com.nhxv.bookstorebackend.service.ImageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @RestController
 @CrossOrigin(origins = "*")

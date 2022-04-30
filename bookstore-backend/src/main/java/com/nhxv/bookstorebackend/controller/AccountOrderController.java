@@ -1,5 +1,9 @@
 package com.nhxv.bookstorebackend.controller;
 
+import com.itextpdf.text.*;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
 import com.nhxv.bookstorebackend.dto.AccountOrderDto;
 import com.nhxv.bookstorebackend.dto.BasicStatsDto;
 import com.nhxv.bookstorebackend.dto.OrderUpdateDto;
@@ -8,18 +12,27 @@ import com.nhxv.bookstorebackend.repository.AccountOrderRepository;
 import com.nhxv.bookstorebackend.repository.AccountRepository;
 import com.nhxv.bookstorebackend.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.math.BigDecimal;
+import java.text.Normalizer;
 import java.util.*;
+import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -164,5 +177,108 @@ public class AccountOrderController {
         accountOrder.setOrderStatus(OrderStatus.valueOf(orderUpdateDto.getStatus()));
         accountOrder.setDateCreated(orderUpdateDto.getDate());
         return ResponseEntity.ok(this.accountOrderRepository.save(accountOrder));
+    }
+
+    @GetMapping(value = "/receipt/{id}", produces = MediaType.APPLICATION_PDF_VALUE)
+    public ResponseEntity<InputStreamResource> getInvoice(@PathVariable long id) throws Exception {
+        AccountOrder accountOrder = this.accountOrderRepository.findById(id)
+                .orElseThrow(() -> new Exception("Order not found for this id: " + id));
+        if (accountOrder.getOrderStatus() != OrderStatus.COMPLETED) {
+            throw new Exception("Invalid request");
+        }
+        ByteArrayInputStream bis = generatePDF(accountOrder);
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Disposition", "inline; filename=invoice.pdf");
+        return ResponseEntity.ok().headers(headers).contentType(MediaType.APPLICATION_PDF).body(new InputStreamResource(bis));
+    }
+
+    private ByteArrayInputStream generatePDF(AccountOrder accountOrder) {
+        List<BookOrder> bookOrders = accountOrder.getBookOrders();
+        Document document = new Document();
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        try {
+            PdfWriter.getInstance(document, out);
+            document.open();
+            // add text to pdf
+
+            Paragraph p1 = new Paragraph("Mangastore");
+            p1.setIndentationLeft(50);
+            Paragraph p2 = new Paragraph("16 Lost Street Ho Chi Minh City\n" + "mangastore.com\n");
+            p2.setIndentationLeft(50);
+            document.add(p1);
+            document.add(p2);
+            document.add(Chunk.NEWLINE);
+            Paragraph p3 = new Paragraph(
+                    "Receipt for customer " + accountOrder.getId() + "\n" +
+                            "Recipient's name: "+ stripSign(accountOrder.getName()) + "\n" +
+                            "Email: "+ accountOrder.getEmail() + "\n" +
+                            "Phone number: "+ accountOrder.getPhone() + "\n" +
+                            "Address: "+ accountOrder.getAddress());
+            p3.setIndentationLeft(50);
+            document.add(p3);
+            document.add(Chunk.NEWLINE);
+            // add table to pdf
+            PdfPTable table = new PdfPTable(4);
+            Stream.of("Title", "Author", "Quantity", "Unit price").forEach(headerTitle -> {
+                PdfPCell header = new PdfPCell();
+                header.setPaddingTop(8);
+                header.setPaddingBottom(8);
+                header.setHorizontalAlignment(Element.ALIGN_CENTER);
+                header.setPhrase(new Phrase(headerTitle));
+                table.addCell(header);
+            });
+            // each row add product order
+            for (BookOrder bookOrder : bookOrders) {
+                // add name
+                PdfPCell titleCell = new PdfPCell(new Phrase(stripSign(bookOrder.getTitle())));
+                titleCell.setPaddingTop(8);
+                titleCell.setPaddingBottom(8);
+                titleCell.setHorizontalAlignment(Element.ALIGN_CENTER);
+                titleCell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                table.addCell(titleCell);
+                // add author
+                PdfPCell authorCell = new PdfPCell(new Phrase(stripSign(bookOrder.getAuthorName())));
+                authorCell.setPaddingTop(8);
+                authorCell.setPaddingBottom(8);
+                authorCell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                authorCell.setHorizontalAlignment(Element.ALIGN_CENTER);
+                table.addCell(authorCell);
+                // add quantity
+                PdfPCell quantityCell = new PdfPCell(new Phrase(String.valueOf(bookOrder.getQuantity())));
+                quantityCell.setPaddingTop(8);
+                quantityCell.setPaddingBottom(8);
+                quantityCell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                quantityCell.setHorizontalAlignment(Element.ALIGN_CENTER);
+                table.addCell(quantityCell);
+                // add unit price
+                PdfPCell priceCell = new PdfPCell(new Phrase(bookOrder.getUnitPrice().toString()));
+                priceCell.setPaddingTop(8);
+                priceCell.setPaddingBottom(8);
+                priceCell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                priceCell.setHorizontalAlignment(Element.ALIGN_CENTER);
+                table.addCell(priceCell);
+            }
+            document.add(table);
+            document.add(Chunk.NEWLINE);
+            Paragraph p4 = new Paragraph
+                    ("Total: $" + accountOrder.getTotalPrice().toString() + "\n\n" +
+                            "-------------------------------------------------------------------------------------------------------");
+            p4.setIndentationLeft(50);
+            document.add(p4);
+            document.add(Chunk.NEWLINE);
+            Paragraph p5 = new Paragraph("Thank you for visiting our store");
+            p5.setAlignment(Element.ALIGN_CENTER);
+            document.add(p5);
+            document.close();
+        } catch (DocumentException e) {
+            e.printStackTrace();
+        }
+        return new ByteArrayInputStream(out.toByteArray());
+    }
+
+    private static String stripSign(String vnmese) {
+        String str = Normalizer.normalize(vnmese, Normalizer.Form.NFD);
+        str = str.replaceAll("\\p{M}", "");
+        return str;
     }
 }
