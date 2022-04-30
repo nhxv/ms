@@ -1,11 +1,11 @@
 // Primary
-$fadePrimary: $light-blue-100;
-$fadePrimaryHover: $light-blue-200;
-$fadePrimaryActive: $light-blue-300;
-$fadePrimaryText: $light-blue-500;
-$primary: $light-blue-500;
-$primaryHover: $light-blue-600;
-$primaryActive: $light-blue-700;
+$fadePrimary: $neutral-200;
+$fadePrimaryHover: $neutral-300;
+$fadePrimaryActive: $neutral-400;
+$fadePrimaryText: $neutral-500;
+$primary: $neutral-900;
+$primaryHover: $neutral-700;
+$primaryActive: $neutral-800;
 $primaryText: $white;
 
 // Secondary
@@ -82,20 +82,20 @@ $panelBg: $white;
 
 // form
 $placeholder: $neutral-400;
-$inputBg: transparent;
+$inputBg: $panelBg;
 $labelBg: $panelBg;
 $switchBg: $neutral-300;
 $switchBgHover: $neutral-400;
-$popupBg: $bg;
+$popupBg: $panelBg;
 
 // menu
-$navBg: $neutral-100;
-$navHoverBg: $neutral-200;
-$navActiveBg: $primary;
-$navActiveHoverBg: $primaryHover; // when hovering active element
-$navText: $neutral-900;
+$navBg: $neutral-900;
+$navHoverBg: $neutral-700;
+$navActiveBg: $neutral-100;
+$navActiveHoverBg: $neutral-200; // when hovering active element
+$navText: $neutral-100;
 $navTextHover: $navText;
-$navTextActive: $primaryText; // on desktop
+$navTextActive: $neutral-900; // on desktop
 $navTextActiveHover: $navTextActive;
 
 // tooltip

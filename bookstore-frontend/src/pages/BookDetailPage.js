@@ -10,6 +10,7 @@ import { Dropdown } from "primereact/dropdown";
 import { useSelector } from "react-redux";
 import { Toast } from "primereact/toast";
 import Spinner from "../components/Spinner";
+import { Message } from "primereact/message";
 
 function BookDetailPage() {
   const addedToast = useRef(null);
@@ -37,6 +38,7 @@ function BookDetailPage() {
           description: bookData.description,
           unitPrice: bookData.unitPrice,
           genres: bookData.genres,
+          available: bookData.available,
         });
       }).catch(err => {
         navigate(`/not-found`);
@@ -116,7 +118,18 @@ function BookDetailPage() {
                 ${book.unitPrice * selectedQuantity}
               </span>
             </div>
-            <Button label="Add to cart" className="mb-4 mt-3 d-block" style={{width: "225px"}} onClick={onAddToCart}/>
+            { book.available ?
+              (<Button label="Add to cart" className="mb-4 mt-3 d-block" style={{width: "225px"}} onClick={onAddToCart}/>)
+             : (
+             <>
+              <Message severity="warn" content={
+              <>
+              <i className="pi pi-exclamation-triangle mr-2"></i>
+              <span>Out of stock</span>
+              </>} 
+              style={{width: "225px"}} className="mt-4" />
+             </>
+             )}
 
 
           </div>

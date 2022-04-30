@@ -10,7 +10,7 @@ function StatusTag({status}) {
   } else if (status === "COMPLETED") {
     return (
       <>
-      <Tag className="p-tag-fade-primary" value={status}></Tag>
+      <Tag className="p-tag-fade-success" value={status}></Tag>
       </>
     );
   } else if (status === "CANCELED") {

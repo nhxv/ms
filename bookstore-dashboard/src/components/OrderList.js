@@ -1,6 +1,5 @@
 import { Card } from "primereact/card";
 import { useEffect, useState } from "react";
-import { Tag } from "primereact/tag";
 import { Dropdown } from "primereact/dropdown";
 import { Button } from "primereact/button";
 import { Dialog } from "primereact/dialog";
@@ -8,15 +7,18 @@ import backend from "../redux/api";
 import { useNavigate } from "react-router-dom";
 import OrderForm from "./OrderForm";
 import StatusTag from "./StatusTag";
+import { useSelector } from "react-redux";
 
 
 function OrderList() {
   const [orders, setOrders] = useState([]);
   const statuses = ["PROCESSING", "COMPLETED", "CANCELED"];
   const [selectedStatus, setSelectedStatus] = useState(statuses[0]);
-  const [reloadSwitch, setReloadSwitch] = useState(false);
   const [displayOrderForm, setDisplayOrderForm] = useState(false);
   const [orderEdit, setOrderEdit] = useState(null);
+  const isUpdate = useSelector((state) => {
+    return state.orderSlice.trigger;
+  });
 
   const dialogFuncMap = {
     "displayOrderForm": setDisplayOrderForm,
@@ -41,12 +43,7 @@ function OrderList() {
       setOrders(res.data);
     })
     .catch(e => { console.log(e); });
-  }, [selectedStatus, reloadSwitch]);
-
-  const onUpdateOrder = () => {
-    onHideOrderForm();
-    setReloadSwitch(!reloadSwitch);
-  }
+  }, [selectedStatus, isUpdate]);
 
   return (
   <div>
@@ -117,7 +114,7 @@ function OrderList() {
       ) : <></>}
       <Dialog header="Order form" visible={displayOrderForm} 
       style={{ width: "50%" }} dismissableMask onHide={onHideOrderForm}>
-        <OrderForm onUpdate={onUpdateOrder} order={orderEdit} />
+        <OrderForm onUpdate={onHideOrderForm} order={orderEdit} />
       </Dialog>
     <div className="mb-4"></div>
   </div>

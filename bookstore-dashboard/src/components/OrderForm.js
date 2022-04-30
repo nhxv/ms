@@ -4,18 +4,21 @@ import { Dropdown } from "primereact/dropdown";
 import { Calendar } from "primereact/calendar";
 import { Button } from "primereact/button";
 import backend from "../redux/api";
+import { useDispatch } from "react-redux";
+import { editOrder } from "../redux/actions/orderActions";
 
 function OrderForm({ onUpdate, order }) {
   const [date, setDate] = useState(new Date(order?.dateCreated));
   const statuses = ["PROCESSING", "COMPLETED", "CANCELED"];
   const [selectedStatus, setSelectedStatus] = useState(order?.orderStatus);
+  const dispatch = useDispatch();
 
   useEffect(() => {console.log(order);}, []);
 
   const orderForm = useFormik({
     initialValues: {},
     onSubmit: () => {
-      backend.put(`/account-orders/${order.id}`, {status: selectedStatus, date: date})
+      dispatch(editOrder(order.id, {date: date, status: selectedStatus}))
       .then(() => {
         onUpdate();
       })
@@ -46,7 +49,7 @@ function OrderForm({ onUpdate, order }) {
           <div className="mb-4">
             <label htmlFor="date" className="d-block">Order placed:</label>
             <Calendar id="date" value={date} className="w-100" onChange={(e) => setDate(e.value)} 
-            monthNavigator yearNavigator yearRange="2021:2031" monthNavigatorTemplate={monthNavigatorTemplate} 
+            monthNavigator yearNavigator yearRange="2012:2022" monthNavigatorTemplate={monthNavigatorTemplate} 
             yearNavigatorTemplate={yearNavigatorTemplate} />
           </div>
 

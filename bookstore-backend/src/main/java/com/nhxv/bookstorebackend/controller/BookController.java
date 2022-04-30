@@ -41,8 +41,7 @@ public class BookController {
             BookRepository bookRepository,
             AuthorRepository authorRepository,
             BookService bookService,
-            ImageService imageService
-    ) {
+            ImageService imageService) {
         this.bookRepository = bookRepository;
         this.authorRepository = authorRepository;
         this.bookService = bookService;
@@ -148,8 +147,9 @@ public class BookController {
         book.setDescription(bookUpdate.getDescription());
         book.setAmountPurchased(bookUpdate.getAmountPurchased());
         book.setGenres(bookUpdate.getGenres());
-        book.setUnitPrice(book.getUnitPrice());
+        book.setUnitPrice(bookUpdate.getUnitPrice());
         book.setReviews(bookUpdate.getReviews());
+        book.setAvailable(bookUpdate.isAvailable());
 
         Author updatedAuthor = this.authorRepository
                 .findById(Long.parseLong(authorIdParam))

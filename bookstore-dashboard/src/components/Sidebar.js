@@ -14,7 +14,7 @@ function Sidebar() {
   }
 
   return (
-    <nav className="sidebar p-3">
+    <nav className="sidebar p-3 shadow-sm">
       <NavLink className="d-flex align-items-center mb-lg-3 me-md-auto" to="/">
         <span className="ml-3 d-none d-lg-inline"><h4>Dashboard</h4></span>
       </NavLink>

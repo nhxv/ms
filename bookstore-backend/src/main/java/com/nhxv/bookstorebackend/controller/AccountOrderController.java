@@ -1,6 +1,7 @@
 package com.nhxv.bookstorebackend.controller;
 
 import com.nhxv.bookstorebackend.dto.AccountOrderDto;
+import com.nhxv.bookstorebackend.dto.BasicStatsDto;
 import com.nhxv.bookstorebackend.dto.OrderUpdateDto;
 import com.nhxv.bookstorebackend.model.*;
 import com.nhxv.bookstorebackend.repository.AccountOrderRepository;
@@ -16,8 +17,9 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.Collections;
-import java.util.List;
+import java.math.BigDecimal;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -42,6 +44,59 @@ public class AccountOrderController {
         List<AccountOrder> orders = this.accountOrderRepository.findByOrderStatus(OrderStatus.valueOf(status));
         Collections.sort(orders);
         return orders;
+    }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("/stats/basic")
+    public ResponseEntity<BasicStatsDto> getBasicStats() {
+        List<AccountOrder> allOrders = this.accountOrderRepository.findAll();
+        int orderCount = allOrders.size();
+
+        List<AccountOrder> completedOrders = allOrders.stream()
+                .filter(order -> order.getOrderStatus() == OrderStatus.COMPLETED)
+                .collect(Collectors.toList());
+        int bookSaleCount = 0;
+        BigDecimal revenue = new BigDecimal(0);
+        List<Account> customers = new ArrayList<>();
+        for (AccountOrder accountOrder : completedOrders) {
+            if (!customers.contains(accountOrder.getAccount())) customers.add(accountOrder.getAccount());
+            revenue = revenue.add(accountOrder.getTotalPrice());
+            for (BookOrder bookOrder : accountOrder.getBookOrders()) {
+                bookSaleCount += bookOrder.getQuantity();
+            }
+        }
+
+        BasicStatsDto basicStatsDto = new BasicStatsDto();
+        basicStatsDto.setOrderCount(orderCount);
+        basicStatsDto.setBookSaleCount(bookSaleCount);
+        basicStatsDto.setRevenue(revenue);
+        basicStatsDto.setCustomerCount(customers.size());
+        return ResponseEntity.ok(basicStatsDto);
+    }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("/stats/revenue/{year}")
+    public ResponseEntity<Map<Integer, BigDecimal>> getRevenueStats(@PathVariable String year) {
+        List<AccountOrder> completedOrders =
+                this.accountOrderRepository.findByOrderStatus(OrderStatus.COMPLETED)
+                .stream().filter(order -> {
+                    Calendar c = Calendar.getInstance();
+                    c.setTime(order.getDateCreated());
+                    return c.get(Calendar.YEAR) == Integer.parseInt(year);
+                }).collect(Collectors.toList());
+        Calendar calendar = Calendar.getInstance();
+        Map<Integer, BigDecimal> annualRevenue = new HashMap<>();
+        for (int i = 0; i < 12; i++) {
+            annualRevenue.put(i, new BigDecimal(0));
+        }
+        for (AccountOrder accountOrder : completedOrders) {
+            calendar.setTime(accountOrder.getDateCreated());
+            int month = calendar.get(Calendar.MONTH);
+            if (annualRevenue.containsKey(month)) {
+                annualRevenue.put(month, annualRevenue.get(month).add(accountOrder.getTotalPrice()));
+            }
+        }
+        return ResponseEntity.ok(annualRevenue);
     }
 
 
