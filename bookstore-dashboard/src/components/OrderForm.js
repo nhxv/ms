@@ -49,7 +49,7 @@ function OrderForm({ onUpdate, order }) {
           <div className="mb-4">
             <label htmlFor="date" className="d-block">Order placed:</label>
             <Calendar id="date" value={date} className="w-100" onChange={(e) => setDate(e.value)} 
-            monthNavigator yearNavigator yearRange="2012:2022" monthNavigatorTemplate={monthNavigatorTemplate} 
+            monthNavigator yearNavigator yearRange="2018:2022" monthNavigatorTemplate={monthNavigatorTemplate} 
             yearNavigatorTemplate={yearNavigatorTemplate} />
           </div>
 

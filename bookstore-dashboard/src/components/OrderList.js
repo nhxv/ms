@@ -3,17 +3,27 @@ import { useEffect, useState } from "react";
 import { Dropdown } from "primereact/dropdown";
 import { Button } from "primereact/button";
 import { Dialog } from "primereact/dialog";
+import { Paginator } from "primereact/paginator";
 import backend from "../redux/api";
 import { useNavigate } from "react-router-dom";
 import OrderForm from "./OrderForm";
 import StatusTag from "./StatusTag";
 import { useSelector } from "react-redux";
-
+import { useLocation } from "react-router-dom";
 
 function OrderList() {
+  const location = useLocation();
+  let searchParams = new URLSearchParams(location.search);
+  const [first, setFirst] = useState(0);
+  const [pageSize, setPageSize] = useState(0);
+  const [totalRecords, setTotalRecords] = useState(0);
+  const navigate = useNavigate();
+
   const [orders, setOrders] = useState([]);
   const statuses = ["PROCESSING", "COMPLETED", "CANCELED"];
-  const [selectedStatus, setSelectedStatus] = useState(statuses[0]);
+  const [selectedStatus, setSelectedStatus] = useState(
+    statuses.includes(searchParams.get("status")) ? searchParams.get("status") : statuses[0]
+  );
   const [displayOrderForm, setDisplayOrderForm] = useState(false);
   const [orderEdit, setOrderEdit] = useState(null);
   const isUpdate = useSelector((state) => {
@@ -33,21 +43,68 @@ function OrderList() {
     setOrderEdit(null);
     dialogFuncMap["displayOrderForm"](false);
   }
-  
-  const navigate = useNavigate();
 
   useEffect(() => {
     setOrders([]);
-    backend.get(`/account-orders?status=${selectedStatus}`)
-    .then(res => {
-      setOrders(res.data);
-    })
-    .catch(e => { console.log(e); });
-  }, [selectedStatus, isUpdate]);
+    if (location.search) { // has any string behind "?"
+      searchParams = new URLSearchParams(location.search);
+      if ( // minimum params: page, size, sort property, sort direction
+        !searchParams.get("page") || 
+        !searchParams.get("size") ||
+        !searchParams.get("status")
+      ) {
+        navigate(`/not-found`);
+      }
+      getOrderPageable();
+    } else {
+      navigate(`/?page=${0}&size=${9}&status=${"PROCESSING"}`);
+    }
+  }, [selectedStatus, isUpdate, location]);
+
+  const getOrderPageable = () => {
+    let statusParam;
+    if (!statuses.includes(searchParams.get("status"))) {
+      statusParam = "PROCESSING";
+    } else {
+      statusParam = searchParams.get("status");
+    }
+    backend.get(
+      `/account-orders/pageable?` + 
+      `page=${searchParams.get("page") || "0"}&` +
+      `size=${searchParams.get("size") || "9"}&` +
+      `status=${statusParam}`
+    )
+    .then((res) => {
+      console.log(res.data);
+      if (res.data.content) {
+        setOrders(res.data.content);
+        setFirst(+searchParams.get("size") * res.data.number);
+        setPageSize(res.data.pageable.pageSize);
+        setTotalRecords(res.data.totalElements);
+      }
+    });
+  }
+
+  const onChangeStatus = (e) => {
+    setSelectedStatus(e.value);
+    navigate(`/?page=${0}&size=${9}&status=${e.value}`);
+  }
+
+  const onPageChange = (e) => {
+    if (location.search) {
+      navigate(`?` + 
+      `page=${e.page}&` +
+      `size=${(searchParams.get("size")) || "9"}&` +
+      `status=${(searchParams.get("status") || "PROCESSING")}`
+      );
+    } else {
+      navigate(`/books?page=${0}&size=${9}&status=${"PROCESSING"}`);
+    }
+  }
 
   return (
   <div>
-    <Dropdown className="mb-4" options={statuses} value={selectedStatus} onChange={(e) => setSelectedStatus(e.value)} />
+    <Dropdown className="mb-4" options={statuses} value={selectedStatus} onChange={(e) => onChangeStatus(e)} />
 
     {orders.length > 0 ? orders.map(order => {
       return (
@@ -110,8 +167,14 @@ function OrderList() {
             )
           })}
         </div>
-      </Card>)}
+      </Card>
+      )}
       ) : <></>}
+      <div className="mx-auto pb-4">
+        <Paginator first={first} rows={pageSize} totalRecords={totalRecords} 
+        onPageChange={onPageChange}></Paginator>
+      </div>
+
       <Dialog header="Order form" visible={displayOrderForm} 
       style={{ width: "50%" }} dismissableMask onHide={onHideOrderForm}>
         <OrderForm onUpdate={onHideOrderForm} order={orderEdit} />

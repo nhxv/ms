@@ -52,10 +52,16 @@ public class AccountOrderController {
     }
 
     @PreAuthorize("hasRole('ADMIN')")
-    @GetMapping
-    public List<AccountOrder> getOrdersByStatus(@RequestParam(name = "status") String status) {
-        List<AccountOrder> orders = this.accountOrderRepository.findByOrderStatus(OrderStatus.valueOf(status));
-        Collections.sort(orders);
+    @GetMapping("/pageable")
+    public Page<AccountOrder> getOrdersByStatus(@RequestParam(name = "status") String status,
+                                                @RequestParam(name = "page", defaultValue = "0") String pageParam,
+                                                @RequestParam(name = "size", defaultValue = "9") String sizeParam) {
+        int page = Integer.parseInt(pageParam);
+        int size = Integer.parseInt(sizeParam);
+        Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "dateCreated"));
+        Page<AccountOrder> orders = this.accountOrderRepository.findByOrderStatus(OrderStatus.valueOf(status), pageable);
+        System.out.println(orders.getContent());
+        System.out.println("find by status: " + status);
         return orders;
     }
 

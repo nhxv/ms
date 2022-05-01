@@ -1,7 +1,6 @@
 import { Card } from "primereact/card";
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
-import { Checkbox } from "primereact/checkbox";
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { useDispatch } from "react-redux";
@@ -18,7 +17,6 @@ const LoginPage = () => {
     initialValues: {
       email: "",
       password: "",
-      accept: false,
     },
     onSubmit: (data) => {
       dispatch(login(data))
@@ -67,12 +65,6 @@ const LoginPage = () => {
                       style={{width: "100%"}}></InputText>
                       <label htmlFor="password">Password</label>
                     </span>
-                  </div>
-
-                  <div className="d-flex align-items-center mb-4">
-                    <Checkbox inputId="accept" name="accept" 
-                    onChange={loginForm.handleChange} checked={loginForm.values.accept}></Checkbox>
-                    <label htmlFor="accept" className="ml-2 mt-2">Remember my account</label>
                   </div>
 
                   <Button type="submit" label="Login" className="w-100"></Button>
