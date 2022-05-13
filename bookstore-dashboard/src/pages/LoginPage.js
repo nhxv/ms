@@ -49,7 +49,7 @@ function LoginPage() {
                             </div>
 
                             <div className="mb-4">
-                              <span className="p-float-label" style={{width: '100%'}}>
+                              <span className="p-float-label w-100">
                                 <InputText type={'password'} id="password" name="password"
                                 value={loginForm.values.password} onChange={loginForm.handleChange} 
                                 style={{width: '100%'}}></InputText>

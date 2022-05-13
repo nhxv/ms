@@ -59,10 +59,7 @@ public class AccountOrderController {
         int page = Integer.parseInt(pageParam);
         int size = Integer.parseInt(sizeParam);
         Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "dateCreated"));
-        Page<AccountOrder> orders = this.accountOrderRepository.findByOrderStatus(OrderStatus.valueOf(status), pageable);
-        System.out.println(orders.getContent());
-        System.out.println("find by status: " + status);
-        return orders;
+        return this.accountOrderRepository.findByOrderStatus(OrderStatus.valueOf(status), pageable);
     }
 
     @PreAuthorize("hasRole('ADMIN')")
