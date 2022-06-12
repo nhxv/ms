@@ -116,7 +116,7 @@ public class AccountOrderController {
     }
 
 
-    @PreAuthorize("hasAnyRole('ADMIN', 'CUSTOMER')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     @GetMapping("/{username}")
     public List<AccountOrder> getAccountOrders(@PathVariable String username) {
         List<AccountOrder> orders = this.accountOrderRepository.findByAccount_Email(username);
@@ -124,7 +124,7 @@ public class AccountOrderController {
         return orders;
     }
 
-    @PreAuthorize("hasAnyRole('ADMIN', 'CUSTOMER')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     @PostMapping
     public ResponseEntity<AccountOrder> addAccountOrder(@Valid @RequestBody AccountOrderDto accountOrderDto) throws Exception {
         AccountOrder accountOrder = new AccountOrder();

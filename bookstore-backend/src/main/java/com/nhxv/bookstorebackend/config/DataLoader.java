@@ -52,6 +52,7 @@ public class DataLoader implements ApplicationRunner {
             admin.setRoles(roles);
             admin.setReviews(new ArrayList<>());
             admin.setCart(new ArrayList<>());
+            admin.setAccountOrders(new ArrayList<>());
             this.accountRepository.save(admin);
             this.roleRepository.save(new Role(Role.USER));
         }

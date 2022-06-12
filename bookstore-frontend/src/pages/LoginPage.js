@@ -7,10 +7,19 @@ import { useDispatch } from "react-redux";
 import { login } from "../redux/actions/authActions";
 import { merge } from "../redux/actions/cartActions";
 import backend from "../redux/api";
+import { useState } from "react";
+import * as yup from "yup";
+import { Message } from "primereact/message";
 
 const LoginPage = () => {
   let navigate = useNavigate();
   const dispatch = useDispatch();
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const loginSchema = yup.object().shape({
+    email: yup.string().required().email(),
+    password: yup.string().required().min(3),
+  });
 
   // TODO: validation & error handling
   const loginForm = useFormik({
@@ -18,6 +27,7 @@ const LoginPage = () => {
       email: "",
       password: "",
     },
+    validationSchema: loginSchema,
     onSubmit: (data) => {
       dispatch(login(data))
       .then(() => {
@@ -30,7 +40,7 @@ const LoginPage = () => {
       })
       .catch(e => {
         const error = JSON.parse(JSON.stringify(e));
-        console.log(error.message);
+        setErrorMessage(error.message);
       });
       loginForm.resetForm();
     }
@@ -40,6 +50,14 @@ const LoginPage = () => {
     navigate("/register");
   }
 
+  const isFormFieldValid = (name) => {
+    return !!(loginForm.touched[name] && loginForm.errors[name]);
+  };
+
+  const getFormErrorMessage = (name) => {
+    return isFormFieldValid(name) && <small className="p-error m-0">{loginForm.errors[name]}</small>;
+  };
+
   return (
     <section>
       <h4 className="text-center mb-4">Welcome back</h4>
@@ -48,6 +66,7 @@ const LoginPage = () => {
           <Card className="mb-4">
             <div className="py-5 px-4 row justify-content-center">
               <div className="col-lg-8 col-12">
+                {errorMessage ? (<Message severity="error" text={errorMessage} className="mb-4 w-100" />) : (<></>)}
                 <form onSubmit={loginForm.handleSubmit}>
                   <div className="mb-4">
                     <span className="p-float-label">
@@ -56,6 +75,7 @@ const LoginPage = () => {
                       style={{width: "100%"}}></InputText>
                       <label htmlFor="email">Email</label>
                     </span>
+                    {getFormErrorMessage("email")}
                   </div>
 
                   <div className="mb-4">
@@ -65,6 +85,7 @@ const LoginPage = () => {
                       style={{width: "100%"}}></InputText>
                       <label htmlFor="password">Password</label>
                     </span>
+                    {getFormErrorMessage("password")}
                   </div>
 
                   <Button type="submit" label="Login" className="w-100"></Button>

@@ -67,6 +67,7 @@ public class AccountServiceImpl implements UserDetailsService, AccountService {
             newAccount.setRoles(roles);
             newAccount.setReviews(new ArrayList<>());
             newAccount.setCart(new ArrayList<>());
+            newAccount.setAccountOrders(new ArrayList<>());
             return accountRepository.save(newAccount);
         }
         throw new ExistException("Email already exists");

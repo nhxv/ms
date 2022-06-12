@@ -30,7 +30,7 @@ public class AccountController {
         this.accountService = accountService;
     }
 
-    @PreAuthorize("hasAnyRole('CUSTOMER' , 'ADMIN')")
+    @PreAuthorize("hasAnyRole('USER' , 'ADMIN')")
     @GetMapping("/{email}")
     public ResponseEntity<Account> getAccountByEmail(@PathVariable String email) throws Exception {
         Account account = accountRepository.findByEmail(email);
@@ -45,7 +45,7 @@ public class AccountController {
         return accountService.save(account);
     }
 
-    @PreAuthorize("hasAnyRole('ADMIN', 'CUSTOMER')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     @PutMapping("/{username}")
     public ResponseEntity<Account> updateAccount(@PathVariable String username,
                                                  @Valid @RequestBody AccountUpdateDto accountUpdate) throws Exception {
@@ -59,7 +59,7 @@ public class AccountController {
         return ResponseEntity.ok(accountRepository.save(account));
     }
 
-    @PreAuthorize("hasAnyRole('ADMIN', 'CUSTOMER')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     @PutMapping("/cart-merge/{username}")
     public ResponseEntity<Account> mergeCart(@PathVariable String username,
                                              @Valid @RequestBody List<CartItem> newCart) throws Exception {

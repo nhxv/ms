@@ -31,10 +31,10 @@ public class BookServiceImpl implements BookService {
                                    String title) throws Exception {
         String selectStr = "select distinct ";
         StringBuilder sqlQuery = new StringBuilder(
-                "book.*, author.name " + "from bookstore.book book " +
-                "join bookstore.book_genres book_genres on book.id = book_genres.book_id " +
-                "join bookstore.genre genre on book_genres.genre_id = genre.id " +
-                "join bookstore.author author on author.id = book.author_id ");
+                "book.*, author.name " + "from book book " +
+                "join book_genres book_genres on book.id = book_genres.book_id " +
+                "join genre genre on book_genres.genre_id = genre.id " +
+                "join author author on author.id = book.author_id ");
         sqlQuery.append("where (lower(book.title) like lower('%").append(title).append("%')) ");
         sqlQuery.append("and (book.unit_price > ").append(minPrice)
                 .append(" and book.unit_price < ").append(maxPrice)
@@ -79,7 +79,7 @@ public class BookServiceImpl implements BookService {
     @Override
     public List<Book> findBooksFromOrder(List<BookOrder> bookOrders) throws Exception {
         String selectStr = "select distinct ";
-        StringBuilder sqlQuery = new StringBuilder("book.* from bookstore.book book where ");
+        StringBuilder sqlQuery = new StringBuilder("book.* from book book where ");
         Iterator<BookOrder> iterator = bookOrders.iterator();
         while (iterator.hasNext()) {
             BookOrder bookOrder = iterator.next();

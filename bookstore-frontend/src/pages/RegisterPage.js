@@ -7,10 +7,13 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import { useDispatch } from "react-redux";
 import { register } from "../redux/actions/authActions";
+import { Message } from "primereact/message";
+import { useState } from "react";
 
 const RegisterPage = () => {
   let navigate = useNavigate();
   const dispatch = useDispatch();
+  const [errorMessage, setErrorMessage] = useState("");
 
   const registerSchema = yup.object().shape({
     email: yup.string().required().email(),
@@ -22,7 +25,6 @@ const RegisterPage = () => {
     accept: yup.boolean().required().oneOf([true], "Don't read, just accept."),
   });
 
-  // TODO: validation
   const registerForm = useFormik({
     initialValues: {
       email: "",
@@ -47,7 +49,8 @@ const RegisterPage = () => {
         onNavigate();
       })
       .catch(e => {
-        console.log(e);
+        const error = JSON.parse(JSON.stringify(e));
+        setErrorMessage(error.message);
       });
       registerForm.resetForm();
     }
@@ -73,6 +76,7 @@ const RegisterPage = () => {
         <Card className="mb-4">
           <div className="py-5 px-4 row justify-content-center">
             <div className="col-lg-8 col-12">
+              {errorMessage ? (<Message severity="error" text={errorMessage} className="mb-4 w-100" />) : (<></>)}
               <form onSubmit={registerForm.handleSubmit}>
                 <div className="mb-4">
                   <span className="p-float-label">

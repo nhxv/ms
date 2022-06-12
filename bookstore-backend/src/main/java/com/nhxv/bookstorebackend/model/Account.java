@@ -166,7 +166,9 @@ public class Account {
                 );
             }
         } else {
-            this.cart.clear();
+            if (this.cart != null) {
+                this.cart.clear();
+            }
         }
     }
 

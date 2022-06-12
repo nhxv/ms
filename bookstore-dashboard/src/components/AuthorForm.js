@@ -8,6 +8,8 @@ import { Button } from "primereact/button";
 import { Calendar } from "primereact/calendar";
 import { Dropdown } from "primereact/dropdown";
 import { FileUpload } from "primereact/fileupload";
+import * as yup from "yup";
+import { Message } from "primereact/message";
 
 function AuthorForm ({ onHide, authorEdit }) {
   const [imageFile, setImageFile] = useState(null);
@@ -17,12 +19,19 @@ function AuthorForm ({ onHide, authorEdit }) {
     icon: "pi pi-upload",
   });
   const dispatch = useDispatch();
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const authorSchema = yup.object().shape({
+    name: yup.string().required(),
+    hometown: yup.string().required(),
+  });
 
   const authorForm = useFormik({
     initialValues: {
       name: (authorEdit ? authorEdit.name : ""),
       hometown: (authorEdit? authorEdit.hometown : ""),
     },
+    validationSchema: authorSchema,
     onSubmit: (basicData) => {
       let authorFormData = new FormData();
       authorFormData.append("imageFile", imageFile);
@@ -43,7 +52,7 @@ function AuthorForm ({ onHide, authorEdit }) {
         .catch(e => {
           // TODO: display error UI
           const error = JSON.parse(JSON.stringify(e));
-          console.log(error.message);
+          setErrorMessage(error.message);
         })
 
       } else {
@@ -57,7 +66,7 @@ function AuthorForm ({ onHide, authorEdit }) {
         .catch(e => {
           // TODO: display error UI
           const error = JSON.parse(JSON.stringify(e));
-          console.log(error.message);
+          setErrorMessage(error.message);
         });
       }
 
@@ -89,24 +98,35 @@ function AuthorForm ({ onHide, authorEdit }) {
     return <Dropdown value={e.value} options={e.options} onChange={(event) => e.onChange(event.originalEvent, event.value)} className="ml-2" style={{ lineHeight: 1 }} />;
   }
 
+  const isFormFieldValid = (name) => {
+    return !!(authorForm.touched[name] && authorForm.errors[name]);
+  };
+
+  const getFormErrorMessage = (name) => {
+    return isFormFieldValid(name) && <small className="p-error m-0">{authorForm.errors[name]}</small>;
+  };
+
   return (
   <>
     <div className="mb-4">
       <div className="py-3 px-4 row justify-content-center">
         <div className="col-lg-8 col-12">
+          {errorMessage ? (<Message severity="error" text={errorMessage} className="mb-4 w-100" />) : (<></>)}
           <form onSubmit={authorForm.handleSubmit}>
             <div className="mb-4">
               <label htmlFor="name" className="d-block">Full name:</label>
-              <InputText id="name" name="name" className="d-block" 
+              <InputText id="name" name="name" className="d-block w-100" 
               value={authorForm.values.name} onChange={authorForm.handleChange}  
-              style={{width: "100%"}} autoFocus></InputText>  
+              onBlur={authorForm.handleBlur} autoFocus></InputText>
+              {getFormErrorMessage("name")}  
             </div>
 
             <div className="mb-4">
               <label htmlFor="hometown" className="d-block">Hometown:</label>
-              <InputText id="hometown" name="hometown" className="d-block" 
-              value={authorForm.values.hometown} onChange={authorForm.handleChange}  
-              style={{width: "100%"}}></InputText>  
+              <InputText id="hometown" name="hometown" className="d-block w-100" 
+              value={authorForm.values.hometown} onChange={authorForm.handleChange}
+              onBlur={authorForm.handleBlur}></InputText>
+              {getFormErrorMessage("hometown")}   
             </div>
 
             <div className="mb-4">

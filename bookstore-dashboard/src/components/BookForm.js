@@ -13,6 +13,8 @@ import { FileUpload } from "primereact/fileupload";
 import { Checkbox } from "primereact/checkbox";
 import { useEffect } from "react";
 import backend from "../redux/api";
+import * as yup from "yup";
+import { Message } from "primereact/message";
 
 function BookForm({ onHide, bookEdit }) {
   const [imageFile, setImageFile] = useState(null);
@@ -25,27 +27,46 @@ function BookForm({ onHide, bookEdit }) {
     label: (bookEdit ? "Choose different image" : "Choose image"),
     icon: "pi pi-upload",
   })
+  const [errorMessage, setErrorMessage] = useState("");
   const dispatch = useDispatch();
 
   useEffect(() => {
+    let isAuthorSub = true;
     backend.get(`/authors`).then((res) => {
-      const authorsData = res.data;
-      setAuthors(authorsData); // this is async
-      if (bookEdit) {
-        const authorSelected = authorsData.find(author => author.id === bookEdit.author.id);
-        setSelectedAuthor(authorSelected);
+      if (isAuthorSub) {
+        const authorsData = res.data;
+        setAuthors(authorsData); // this is async
+        if (bookEdit) {
+          const authorSelected = authorsData.find(author => author.id === bookEdit.author.id);
+          setSelectedAuthor(authorSelected);
+        }
       }
     });
 
+    let isGenreSub = true;
     backend.get(`/genres`).then((res) => {
-      const genresData = res.data;
-      setGenres(genresData);
-      if (bookEdit) {
-        const genresSelected = genresData.filter(genre => bookEdit.genres.find(genreEdit => genreEdit.id === genre.id));
-        setSelectedGenres(genresSelected);
+      if (isGenreSub) {
+        const genresData = res.data;
+        setGenres(genresData);
+        if (bookEdit) {
+          const genresSelected = genresData.filter(genre => bookEdit.genres.find(genreEdit => genreEdit.id === genre.id));
+          setSelectedGenres(genresSelected);
+        }
       }
+
+      // cleanup function: https://blog.logrocket.com/understanding-react-useeffect-cleanup-function/
+      return () => {
+        isAuthorSub = false;
+        isGenreSub = false;
+      }
+
     });
-  }, []);
+  }, [errorMessage]);
+
+  const bookSchema = yup.object().shape({
+    title: yup.string().required(),
+    description: yup.string().required(),
+  });
 
   const bookForm = useFormik({
     initialValues: {
@@ -53,7 +74,12 @@ function BookForm({ onHide, bookEdit }) {
       description: (bookEdit ? bookEdit.description : ""),
       available: (bookEdit ? bookEdit.available : true),
     },
+    validationSchema: bookSchema,
     onSubmit: (basicData) => {
+      if (!selectedAuthor || !selectedGenres) {
+        setErrorMessage("Invalid");
+        return;
+      }
       let bookFormData = new FormData();
       bookFormData.append("imageFile", imageFile);
       bookFormData.append("authorId", selectedAuthor.id);
@@ -75,9 +101,8 @@ function BookForm({ onHide, bookEdit }) {
           bookForm.resetForm();  
         })
         .catch(e => {
-          // TODO: display error UI
           const error = JSON.parse(JSON.stringify(e));
-          console.log(error.message);
+          setErrorMessage(error.message);
         });
       } else {
         dispatch(addBook(bookFormData))
@@ -91,7 +116,7 @@ function BookForm({ onHide, bookEdit }) {
         .catch(e => {
           // TODO: display error UI
           const error = JSON.parse(JSON.stringify(e));
-          console.log(error.message);
+          setErrorMessage(error.message);
         });
       }
     }
@@ -120,17 +145,26 @@ function BookForm({ onHide, bookEdit }) {
     setUnitPrice(e.value);
   }
 
+  const isFormFieldValid = (name) => {
+    return !!(bookForm.touched[name] && bookForm.errors[name]);
+  };
+
+  const getFormErrorMessage = (name) => {
+    return isFormFieldValid(name) && <small className="p-error m-0">{bookForm.errors[name]}</small>;
+  };
+
   return (
     <>
       <div className="mb-4">
         <div className="py-3 px-4 row justify-content-center">
           <div className="col-lg-8 col-12">
+            {errorMessage ? (<Message severity="error" text={errorMessage} className="mb-4 w-100" />) : (<></>)}
             <form onSubmit={bookForm.handleSubmit}>
               <div className="mb-4">
                 <label htmlFor="title" className="d-block">Title:</label>
-                <InputText id="title" name="title" className="d-block" 
-                value={bookForm.values.title} onChange={bookForm.handleChange}  
-                style={{width: "100%"}} autoFocus />
+                <InputText id="title" name="title" className="d-block w-100" onBlur={bookForm.handleBlur} 
+                value={bookForm.values.title} onChange={bookForm.handleChange} autoFocus />
+                {getFormErrorMessage("title")}
               </div>
 
               <div className="mb-4">
@@ -149,9 +183,10 @@ function BookForm({ onHide, bookEdit }) {
 
               <div className="mb-4">
                 <label htmlFor="description" className="d-block">Descriptions:</label>
-                <InputTextarea id="description" name="description" rows={5}
+                <InputTextarea id="description" name="description" rows={5} onBlur={bookForm.handleBlur}
                 value={bookForm.values.description} onChange={bookForm.handleChange}
                 style={{width: "100%"}} />
+                {getFormErrorMessage("description")}
               </div>
               
               <div className="mb-4">
@@ -187,7 +222,7 @@ function BookForm({ onHide, bookEdit }) {
                 onChange={bookForm.handleChange} checked={bookForm.values.available}></Checkbox>
                 <label htmlFor="accept" className="ml-2 mt-2">Available to purchase</label>
               </div>
-              <Button label="Submit" type="submit" className="mt-2" style={{width: "100%"}}></Button>
+              <Button label="Submit" type="submit" className="mt-2 w-100"></Button>
             </form>
           </div>
         </div>
