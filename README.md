@@ -18,12 +18,16 @@ HTML, CSS, SCSS, PrimeReact, Bootstrap, Javascript, Chart.js, React, Formik, Red
     - open bookstore-dashboard folder and start React server (localhost:3600)
     - use images inside manga-img folder to add/edit manga & artist
 
- Admin account: 
+ Admin account:
+
  admin@gmail.com
+
  admin
 
  Customer account:
+
  vinh@gmail.com or xuan@gmail.com
+ 
  password   
 
 ### Main features
