@@ -75,7 +75,6 @@ function OrderList() {
       `status=${statusParam}`
     )
     .then((res) => {
-      console.log(res.data);
       if (res.data.content) {
         setOrders(res.data.content);
         setFirst(+searchParams.get("size") * res.data.number);

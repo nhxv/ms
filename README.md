@@ -24,11 +24,15 @@ HTML, CSS, SCSS, PrimeReact, Bootstrap, Javascript, Chart.js, React, Formik, Red
 
  admin
 
+
  Customer account:
 
  vinh@gmail.com or xuan@gmail.com
- 
- password   
+
+ password
+
+
+ (*) only admin account can access dashboard.   
 
 ### Main features
 Everyone can

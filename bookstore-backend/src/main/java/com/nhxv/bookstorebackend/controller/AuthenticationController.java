@@ -43,4 +43,19 @@ public class AuthenticationController {
         final String token = jwtTokenUtil.generateToken(authentication);
         return ResponseEntity.ok(new TokenDto(token, account.getEmail(), account.getRoles(), account.getCart()));
     }
+
+    @PostMapping("/admin")
+    public ResponseEntity<TokenDto> getAdminToken(@RequestBody LoginDto loginDto) throws Exception {
+        final Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(loginDto.getEmail(), loginDto.getPassword()
+                )
+        );
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        final Account account = accountRepository.findByEmail(loginDto.getEmail());
+        if (!account.getRoles().contains(new Role(Role.ADMIN))) {
+            throw new Exception("not admin");
+        }
+        final String token = jwtTokenUtil.generateToken(authentication);
+        return ResponseEntity.ok(new TokenDto(token, account.getEmail(), account.getRoles(), account.getCart()));
+    }
 }
