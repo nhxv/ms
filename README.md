@@ -18,18 +18,26 @@ HTML, CSS, SCSS, PrimeReact, Bootstrap, Javascript, Chart.js, React, Formik, Red
     - open bookstore-dashboard folder and start React server (localhost:3600)
     - use images inside manga-img folder to add/edit manga & artist
 
+ Admin account: 
+ admin@gmail.com
+ admin
+
+ Customer account:
+ vinh@gmail.com or xuan@gmail.com
+ password   
+
 ### Main features
 Everyone can
 
     - search manga by name
-    - filter manga by using filter form
-    - filter manga by changing url
+    - filter manga by filter form
+    - filter manga by url
     - search artist by name
     - put manga to cart
 
 Customer can
 
-    - checkout (cart before login will auto merge with content in customer's cart after login)
+    - checkout (cart before login will auto merge with customer's cart after login)
     - print receipt
     - edit shipping info
 
