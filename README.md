@@ -12,10 +12,32 @@ HTML, CSS, SCSS, PrimeReact, Bootstrap, Javascript, Chart.js, React, Formik, Red
     - create sql user and schema according to the infomation provided in bookstore-backend/src/main/resources/application.properties
     - run enum.sql to create enum type order_status
     - run tables.sql to generate sql tables
-    - run sample-data.sql to add manga and artist data
-    - open bookstore-backend folder and start Spring Boot server (default port: localhost:8080)
-    - open bookstore-frontend folder and start React server (default port: localhost:3000)
-    - open bookstore-dashboard folder and start React server (default port: localhost:3600)
+    - run sample-data.sql to add user, manga and artist data
+    - open bookstore-backend folder and start Spring Boot server (localhost:8080)
+    - open bookstore-frontend folder and start React server (localhost:3000)
+    - open bookstore-dashboard folder and start React server (localhost:3600)
+    - use images inside manga-img folder to add/edit manga & artist
+
+### Main features
+Everyone can
+
+    - search manga by name
+    - filter manga by using filter form
+    - filter manga by changing url
+    - search artist by name
+    - put manga to cart
+
+Customer can
+
+    - checkout (cart before login will auto merge with content in customer's cart after login)
+    - print receipt
+    - edit shipping info
+
+Owner/Admin can
+
+    - process order
+    - view sales figures
+    - add & edit manga & artist info
 
 ### Licenses
 All images and informations are taken from myanimelist.net, viz.com, and kodansha.us 

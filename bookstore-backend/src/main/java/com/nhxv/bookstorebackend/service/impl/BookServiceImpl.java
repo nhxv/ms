@@ -36,8 +36,8 @@ public class BookServiceImpl implements BookService {
                 "join genre genre on book_genres.genre_id = genre.id " +
                 "join author author on author.id = book.author_id ");
         sqlQuery.append("where (lower(book.title) like lower('%").append(title).append("%')) ");
-        sqlQuery.append("and (book.unit_price > ").append(minPrice)
-                .append(" and book.unit_price < ").append(maxPrice)
+        sqlQuery.append("and (book.unit_price >= ").append(minPrice)
+                .append(" and book.unit_price <= ").append(maxPrice)
                 .append(") ");
         sqlQuery.append("group by book.id, author.name ");
         if (genreNames != null && !genreNames.isEmpty()) {
