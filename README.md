@@ -9,13 +9,13 @@ HTML, CSS, SCSS, PrimeReact, Bootstrap, Javascript, Chart.js, React, Formik, Red
 ### How to run locally
 
     - install npm, Java 8, PostgreSQL
-    - create sql user and schema according to the infomation provided in application.properties
+    - create sql user and schema according to the infomation provided in bookstore-backend/src/main/resources/application.properties
+    - run enum.sql to create enum type order_status
     - run tables.sql to generate sql tables
     - run sample-data.sql to add manga and artist data
-    - run enum.sql to create enum type order_status
     - open bookstore-backend folder and start Spring Boot server (default port: localhost:8080)
-    - open bookstore-frontend and start React server (default port: localhost:3000)
-    - open bookstore-dashboard and start React server (default port: localhost:3600)
+    - open bookstore-frontend folder and start React server (default port: localhost:3000)
+    - open bookstore-dashboard folder and start React server (default port: localhost:3600)
 
 ### Licenses
 All images and informations are taken from myanimelist.net, viz.com, and kodansha.us 
