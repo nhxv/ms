@@ -14,8 +14,8 @@ HTML, CSS, SCSS, PrimeReact, Bootstrap, Javascript, Chart.js, React, Formik, Red
     - run tables.sql to generate sql tables
     - run sample-data.sql to add user, manga and artist data
     - open bookstore-backend folder and start Spring Boot server (localhost:8080)
-    - open bookstore-frontend folder and start React server (localhost:3000)
-    - open bookstore-dashboard folder and start React server (localhost:3600)
+    - open bookstore-frontend folder and start React server
+    - open bookstore-dashboard folder and start React server
     - use images inside manga-img folder to add/edit manga & artist
 
  ---
@@ -50,14 +50,15 @@ Everyone can
 Customer can
 
     - checkout (cart before login will auto merge with customer's cart after login)
-    - print receipt
+    - view previous orders
+    - print receipt when order's completed
     - edit shipping info
 
 Owner/Admin can
 
     - process order
     - view sales figures
-    - add & edit manga & artist info
+    - add & edit manga & artist's information
 
 ### Licenses
 All images and informations are taken from myanimelist.net, viz.com, and kodansha.us 
