@@ -1,7 +1,7 @@
 # Manga Store & Manga Dashboard
 A manga e-commerce frontend for customers to buy manga, and a manga dashboard frontend for store owner to manage their store. They share the same backend api.
 
-Demo: soon™
+Demo: https://www.youtube.com/watch?v=vOnSRbyrbRo
 
 ### Built with
 HTML, CSS, SCSS, PrimeReact, Bootstrap, Javascript, Chart.js, React, Formik, Redux, Java, Spring Boot, Spring Data JPA, Spring Security, Hibernate, iText, PostgreSQL
